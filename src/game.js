@@ -9,6 +9,13 @@ class Game {
     this.lastFrame = 0;
     
     this.canvas = document.getElementById("canvas");
+    window.addEventListener("resize", () => this.updateCanvasSize());
+    this.updateCanvasSize();
+  }
+  updateCanvasSize() {
+    const rect = document.documentElement.getBoundingClientRect();
+    this.canvas.width = rect.width;
+    this.canvas.height = rect.height;
   }
   start() {
     this.running = true;
