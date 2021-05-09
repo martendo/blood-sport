@@ -141,12 +141,12 @@ module.exports = function(grunt) {
         options: {
           banner: {
             normal: "/*\n" +
-                    " * Scythe Sport (<%= pkg.homepage %>)\n" +
+                    " * Blood Sport (<%= pkg.homepage %>)\n" +
                     " * Copyright (C) <%= grunt.template.today('yyyy') %> <%= pkg.author %>\n" +
                     " * Licensed under the GNU General Public License v3.0\n" +
                     " */\n",
             html: "<!--\n" +
-                  "  Scythe Sport (<%= pkg.homepage %>)\n" +
+                  "  Blood Sport (<%= pkg.homepage %>)\n" +
                   "  Copyright (C) <%= grunt.template.today('yyyy') %> <%= pkg.author %>\n" +
                   "  Licensed under the GNU General Public License v3.0\n" +
                   "-->\n",

@@ -1,19 +1,19 @@
 {
-  "name": "scythe-sport",
+  "name": "blood-sport",
   "version": "0.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/martendo7/scythe-sport.git"
+    "url": "git+https://github.com/martendo7/blood-sport.git"
   },
   "author": "Martin Baldwin",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/martendo7/scythe-sport/issues"
+    "url": "https://github.com/martendo7/blood-sport/issues"
   },
-  "homepage": "https://github.com/martendo7/scythe-sport",
+  "homepage": "https://github.com/martendo7/blood-sport",
   "devDependencies": {
     "grunt": "^1.4.0",
     "html-minifier": "^4.0.0",
