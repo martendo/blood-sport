@@ -1,0 +1,7 @@
+# "Built" code
+/public/index.html
+/public/style.css
+/public/script.js
+
+# Dependency directories
+/node_modules/

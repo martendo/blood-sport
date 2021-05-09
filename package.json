@@ -1,0 +1,22 @@
+{
+  "name": "scythe-sport",
+  "version": "0.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martendo7/scythe-sport.git"
+  },
+  "author": "Martin Baldwin",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/martendo7/scythe-sport/issues"
+  },
+  "homepage": "https://github.com/martendo7/scythe-sport",
+  "devDependencies": {
+    "grunt": "^1.4.0",
+    "html-minifier": "^4.0.0",
+    "uglify-es": "^3.3.9"
+  }
+}
