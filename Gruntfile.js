@@ -38,8 +38,8 @@ module.exports = function(grunt) {
     copy: {
       build: {
         files: {
-          "public/index.html": "src/index.html",
-          "public/style.css": "src/style.css",
+          "index.html": "src/index.html",
+          "style.css": "src/style.css",
         },
       },
     },
@@ -54,7 +54,7 @@ module.exports = function(grunt) {
           append: "})();",
         },
         files: {
-          "public/script.js": ["src/**/*.js"],
+          "script.js": ["src/**/*.js"],
         },
       },
       debug: {
@@ -64,7 +64,7 @@ module.exports = function(grunt) {
           prepend: "\"use strict\";",
         },
         files: {
-          "public/script.js": ["src/**/*.js"],
+          "script.js": ["src/**/*.js"],
         },
       },
     },
@@ -89,7 +89,7 @@ module.exports = function(grunt) {
       },
       build: {
         files: {
-          "public/index.html": "public/index.html",
+          "index.html": "index.html",
         },
       },
     },
@@ -98,7 +98,7 @@ module.exports = function(grunt) {
       build: {
         options: "<%= jsOptions %>",
         files: {
-          "public/script.js": "public/script.js",
+          "script.js": "script.js",
         },
       },
     },
@@ -107,7 +107,7 @@ module.exports = function(grunt) {
       build: {
         options: "<%= cssOptions %>",
         files: {
-          "public/style.css": "public/style.css",
+          "style.css": "style.css",
         },
       },
     },
@@ -115,7 +115,7 @@ module.exports = function(grunt) {
     replace: {
       build: {
         files: {
-          "public/index.html": [{
+          "index.html": [{
             from: /{{ DATE }}/g,
             to: "<%= grunt.template.today(\"mediumDate\") %>",
           }],
@@ -129,9 +129,9 @@ module.exports = function(grunt) {
           type: "image/png",
         },
         src: [
-          "public/index.html",
-          "public/style.css",
-          "public/script.js",
+          "index.html",
+          "style.css",
+          "script.js",
         ],
       },
     },
@@ -152,7 +152,7 @@ module.exports = function(grunt) {
                   "-->\n",
           },
         },
-        src: ["public/*.{js,html,css}"],
+        src: ["*.{js,html,css}"],
       },
     },
   });
