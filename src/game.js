@@ -4,10 +4,16 @@ class Game {
     this.TIMESTEP = 1000 / this.FPS;
     this.MAX_STEPS = this.FPS * 4;
     
+    this.DIR_LEFT = -1;
+    this.DIR_RIGHT = +1;
+    
+    
     this.running = false;
     this.state = GameState.NOT_RUNNING;
     this.delta = 0;
     this.lastFrame = 0;
+    
+    this.actors = new Set();
     
     this.canvas = document.getElementById("canvas");
     window.addEventListener("resize", () => this.updateCanvasSize());
@@ -56,9 +62,21 @@ class Game {
   }
   
   update(delta) {
-    return;
+    switch (this.state) {
+      case GameState.IN_GAME:
+        for (const actor of this.actors) {
+          actor.update();
+        }
+        break;
+    }
   }
   draw() {
-    return;
+    switch (this.state) {
+      case GameState.IN_GAME:
+        for (const actor of this.actors) {
+          actor.draw();
+        }
+        break;
+    }
   }
 }
