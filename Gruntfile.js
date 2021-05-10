@@ -152,7 +152,11 @@ module.exports = function(grunt) {
                   "-->\n",
           },
         },
-        src: ["*.{js,html,css}"],
+        src: [
+          "index.html",
+          "style.css",
+          "script.js",
+        ],
       },
     },
   });
