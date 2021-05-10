@@ -5,6 +5,7 @@ class Game {
     this.MAX_STEPS = this.FPS * 4;
     
     this.running = false;
+    this.state = GameState.NOT_RUNNING;
     this.delta = 0;
     this.lastFrame = 0;
     
@@ -19,6 +20,7 @@ class Game {
   }
   start() {
     this.running = true;
+    this.state = GameState.IN_GAME;
     requestAnimationFrame(this.run.bind(this));
   }
   panic() {
@@ -27,6 +29,7 @@ class Game {
   
   run(timestamp) {
     if (!this.running) {
+      this.state = GameState.NOT_RUNNING;
       return;
     }
     
@@ -51,6 +54,7 @@ class Game {
     this.draw();
     requestAnimationFrame(this.run.bind(this));
   }
+  
   update(delta) {
     return;
   }
