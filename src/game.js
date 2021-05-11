@@ -5,7 +5,7 @@ class Game {
     this.FPS = 30;
     this.TIMESTEP = 1000 / this.FPS;
     this.MAX_STEPS = this.FPS * 4;
-    this.DISPLAY_SCALE = 3;
+    this.DISPLAY_SCALE = 4;
     
     this.DIR_LEFT = -1;
     this.DIR_RIGHT = +1;
