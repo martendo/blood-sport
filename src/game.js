@@ -3,10 +3,10 @@ class Game {
     this.FPS = 30;
     this.TIMESTEP = 1000 / this.FPS;
     this.MAX_STEPS = this.FPS * 4;
+    this.DISPLAY_SCALE = 3;
     
     this.DIR_LEFT = -1;
     this.DIR_RIGHT = +1;
-    
     
     this.running = false;
     this.state = GameState.NOT_RUNNING;
@@ -15,15 +15,21 @@ class Game {
     
     this.actors = new Set();
     
+    this.displayCanvas = document.getElementById("displayCanvas");
+    this.displayCtx = this.displayCanvas.getContext("2d");
+    window.addEventListener("resize", () => this.updateCanvasSize());
     this.canvas = document.getElementById("canvas");
     this.ctx = this.canvas.getContext("2d");
-    window.addEventListener("resize", () => this.updateCanvasSize());
     this.updateCanvasSize();
   }
   updateCanvasSize() {
     const rect = document.documentElement.getBoundingClientRect();
-    this.canvas.width = rect.width;
-    this.canvas.height = rect.height;
+    this.displayCanvas.width = rect.width;
+    this.displayCanvas.height = rect.height;
+    this.canvas.width = rect.width / this.DISPLAY_SCALE;
+    this.canvas.height = rect.height / this.DISPLAY_SCALE;
+    this.displayCtx.imageSmoothingEnabled = false;
+    this.ctx.imageSmoothingEnabled = false;
   }
   start() {
     this.running = true;
@@ -79,5 +85,7 @@ class Game {
         }
         break;
     }
+    
+    this.displayCtx.drawImage(this.canvas, 0, 0, this.displayCanvas.width, this.displayCanvas.height);
   }
 }
