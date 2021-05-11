@@ -2,6 +2,8 @@ class Game {
   constructor() {
     // Game constants
     
+    this.TITLE = document.title;
+    
     this.FPS = 60;
     this.TIMESTEP = 1000 / this.FPS;
     this.MAX_STEPS = this.FPS * 4;
@@ -22,6 +24,8 @@ class Game {
     this.lastFrame = 0;
     
     this.inputHandler = new InputHandler(this);
+    
+    this.titleScreen = new TitleScreen(this);
     
     this.actors = new Set();
     
@@ -57,6 +61,19 @@ class Game {
     });
   }
   
+  drawText({text, x, y, font, textAlign, textBaseline}) {
+    if (font != null) {
+      this.displayCtx.font = font;
+    }
+    if (textAlign != null) {
+      this.displayCtx.textAlign = textAlign;
+    }
+    if (textBaseline != null) {
+      this.displayCtx.textBaseline = textBaseline;
+    }
+    this.displayCtx.fillText(text, x, y);
+  }
+  
   updateCanvasSize() {
     const rect = document.documentElement.getBoundingClientRect();
     this.displayCanvas.width = rect.width;
@@ -69,7 +86,7 @@ class Game {
   
   start() {
     this.running = true;
-    this.state = GameState.IN_GAME;
+    this.state = GameState.TITLE_SCREEN;
     requestAnimationFrame(this.run.bind(this));
   }
   panic() {
@@ -118,13 +135,15 @@ class Game {
     this.displayCtx.clearRect(0, 0, this.displayCanvas.width, this.displayCanvas.height);
     
     switch (this.state) {
+      case GameState.TITLE_SCREEN:
+        this.titleScreen.draw();
+        break;
       case GameState.IN_GAME:
         for (const actor of this.actors) {
           actor.draw();
         }
+        this.displayCtx.drawImage(this.canvas, 0, 0, this.displayCanvas.width, this.displayCanvas.height);
         break;
     }
-    
-    this.displayCtx.drawImage(this.canvas, 0, 0, this.displayCanvas.width, this.displayCanvas.height);
   }
 }

@@ -115,7 +115,7 @@ module.exports = function(grunt) {
     replace: {
       build: {
         files: {
-          "index.html": [{
+          "script.js": [{
             from: /{{ DATE }}/g,
             to: "<%= grunt.template.today(\"mediumDate\") %>",
           }],

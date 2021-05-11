@@ -1,4 +1,5 @@
 const GameState = {
   NOT_RUNNING: "NOT_RUNNING",
+  TITLE_SCREEN: "TITLE_SCREEN",
   IN_GAME: "IN_GAME",
 };
