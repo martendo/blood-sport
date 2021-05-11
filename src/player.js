@@ -1,12 +1,47 @@
 class Player extends Actor {
   constructor(game) {
     super(game);
+    
+    // Player constants
+    
+    this.ACCEL = 2;
+    this.FRICTION = 1;
+    this.MAX_VELX = 4;
+    
+    // Player setup
+    
     this.image = this.game.IMAGES["goddard"];
     
     this.reset();
   }
   
   update() {
+    if (this.game.inputHandler.keys.has("ArrowRight")) {
+      this.vel.x += this.ACCEL;
+    }
+    if (this.game.inputHandler.keys.has("ArrowLeft")) {
+      this.vel.x -= this.ACCEL;
+    }
+    
+    if (this.vel.x > 0) {
+      this.vel.x -= this.FRICTION;
+      // Friction should not make you start moving the other way
+      if (this.vel.x < 0) {
+        this.vel.x = 0;
+      }
+    } else if (this.vel.x < 0) {
+      this.vel.x += this.FRICTION;
+      if (this.vel.x > 0) {
+        this.vel.x = 0;
+      }
+    }
+    
+    if (this.vel.x > this.MAX_VELX) {
+      this.vel.x = this.MAX_VELX;
+    } else if (this.vel.x < -this.MAX_VELX) {
+      this.vel.x = -this.MAX_VELX;
+    }
+    
     super.update();
   }
   
