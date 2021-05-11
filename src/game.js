@@ -25,6 +25,7 @@ class Game {
     
     this.inputHandler = new InputHandler(this);
     
+    this.buttons = new Set();
     this.titleScreen = new TitleScreen(this);
     
     this.actors = new Set();
@@ -86,7 +87,7 @@ class Game {
   
   start() {
     this.running = true;
-    this.state = GameState.TITLE_SCREEN;
+    this.titleScreen.show();
     requestAnimationFrame(this.run.bind(this));
   }
   panic() {
@@ -107,6 +108,8 @@ class Game {
     this.delta += timestamp - this.lastFrame;
     this.lastFrame = timestamp;
     
+    this.handleEvents();
+    
     let steps = 0;
     while (this.delta >= this.TIMESTEP) {
       this.update(this.TIMESTEP);
@@ -121,8 +124,22 @@ class Game {
     requestAnimationFrame(this.run.bind(this));
   }
   
+  handleEvents() {
+    if (!this.inputHandler.pointer.pressed) {
+      return;
+    }
+    for (const button of this.buttons) {
+      if (button.enabled && button.isHovered()) {
+        button.click();
+      }
+    }
+  }
+  
   update(delta) {
     switch (this.state) {
+      case GameState.TITLE_SCREEN:
+        this.titleScreen.update();
+        break;
       case GameState.IN_GAME:
         for (const actor of this.actors) {
           actor.update();

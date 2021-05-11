@@ -3,11 +3,34 @@ class TitleScreen {
     this.game = game;
     
     this.PADDING = 15;
+    this.BUTTON_WIDTH = 300;
+    this.BUTTON_HEIGHT = 75;
     
-    this.button = {
-      width: 500,
-      height: 100,
-    };
+    this.button = new Button(
+      this.game,
+      {
+        x: 0,
+        y: 0,
+        width: this.BUTTON_WIDTH,
+        height: this.BUTTON_HEIGHT,
+      },
+      "Play!",
+      () => this.startGame(),
+    );
+  }
+  
+  show() {
+    this.game.state = GameState.TITLE_SCREEN;
+    this.button.enabled = true;
+  }
+  startGame() {
+    this.game.state = GameState.IN_GAME;
+    this.button.enabled = false;
+  }
+  
+  update() {
+    this.button.rect.x = (this.game.displayCanvas.width / 2) - (this.BUTTON_WIDTH / 2);
+    this.button.rect.y = (this.game.displayCanvas.height / 2) - (this.BUTTON_HEIGHT / 2);
   }
   
   draw() {
@@ -40,5 +63,7 @@ class TitleScreen {
       y: this.game.displayCanvas.height - this.PADDING,
       textAlign: "end",
     });
+    
+    this.button.draw();
   }
 }
