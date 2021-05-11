@@ -4,9 +4,9 @@ class Player extends Actor {
     
     // Player constants
     
-    this.ACCEL = 2;
-    this.FRICTION = 1;
-    this.MAX_VELX = 4;
+    this.ACCEL = 0.25;
+    this.FRICTION = 0.125;
+    this.MAX_VELX = 2;
     
     // Player setup
     

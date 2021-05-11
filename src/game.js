@@ -2,7 +2,7 @@ class Game {
   constructor() {
     // Game constants
     
-    this.FPS = 30;
+    this.FPS = 60;
     this.TIMESTEP = 1000 / this.FPS;
     this.MAX_STEPS = this.FPS * 4;
     this.DISPLAY_SCALE = 4;
