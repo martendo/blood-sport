@@ -16,6 +16,7 @@ class Game {
     this.actors = new Set();
     
     this.canvas = document.getElementById("canvas");
+    this.ctx = this.canvas.getContext("2d");
     window.addEventListener("resize", () => this.updateCanvasSize());
     this.updateCanvasSize();
   }
