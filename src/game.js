@@ -21,6 +21,8 @@ class Game {
     this.delta = 0;
     this.lastFrame = 0;
     
+    this.inputHandler = new InputHandler(this);
+    
     this.actors = new Set();
     
     this.displayCanvas = document.getElementById("displayCanvas");
