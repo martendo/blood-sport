@@ -15,6 +15,6 @@ class Actor {
   }
   
   draw() {
-    this.game.ctx.drawImage(this.image, this.pos.x, this.pos.y);
+    this.game.ctx.drawImage(this.image, Math.floor(this.pos.x), Math.floor(this.pos.y));
   }
 }

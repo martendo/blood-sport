@@ -10,16 +10,4 @@ class Vector2 {
       this.y = y || 0;
     }
   }
-  set x(value) {
-    this._x = Math.floor(value);
-  }
-  set y(value) {
-    this._y = Math.floor(value);
-  }
-  get x() {
-    return this._x;
-  }
-  get y() {
-    return this._y;
-  }
 }
