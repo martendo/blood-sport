@@ -17,15 +17,16 @@ class InputHandler {
   
   updateKey(event) {
     let key;
-    switch (event.key) {
-      case "Left":
-      case "ArrowLeft":
-      case "a":
+    // Convert everything to upper case to ignore case (e.g. Shift key pressed)
+    switch (event.key.toUpperCase()) {
+      case "LEFT":
+      case "ARROWLEFT":
+      case "A":
         key = "ArrowLeft";
         break;
-      case "Right":
-      case "ArrowRight":
-      case "d":
+      case "RIGHT":
+      case "ARROWRIGHT":
+      case "D":
         key = "ArrowRight";
         break;
       default:
