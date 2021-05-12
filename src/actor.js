@@ -12,10 +12,19 @@ class Actor {
     this.game.actors.add(this);
   }
   
+  setRect(rect) {
+    this.rect = rect;
+    this.rect.left = Math.floor(this.pos.x);
+    this.rect.bottom = Math.floor(this.pos.y);
+  }
+  
   update() {
+    this.pos.x += this.vel.x;
+    this.pos.y += this.vel.y;
+    
     let block;
     
-    this.pos.x += this.vel.x;
+    this.rect.left = Math.floor(this.pos.x);
     block = this.blockColliding();
     if (block != null) {
       if (this.vel.x > 0) {
@@ -23,39 +32,39 @@ class Actor {
       } else if (this.vel.x < 0) {
         this.pos.x = block.rect.right - this.hitbox.left;
       }
-      this.vel.x = 0;
+      this.collidedX();
     }
     
     // End of map
     const mapWidthPx = this.game.map.width * this.game.TILE_SIZE;
     if (this.pos.x + this.hitbox.left < 0) {
       this.pos.x = 0 - this.hitbox.x;
-      this.vel.x = 0;
+      this.collidedX();
     } else if (this.pos.x + this.hitbox.right > mapWidthPx) {
-      this.pos.x = mapWidthpx - this.hitbox.right;
-      this.vel.x = 0;
+      this.pos.x = mapWidthPx - this.hitbox.right;
+      this.collidedX();
     }
     
-    this.pos.y += this.vel.y;
+    this.rect.bottom = Math.floor(this.pos.y);
     block = this.blockColliding();
     if (block != null) {
       if (this.vel.y > 0) {
-        this.pos.y = block.rect.top + (this.height - this.hitbox.bottom);
+        this.pos.y = block.rect.top + (this.rect.height - this.hitbox.bottom);
       } else if (this.vel.y < 0) {
-        this.pos.y = block.rect.bottom + (this.height - this.hitbox.top);
+        this.pos.y = block.rect.bottom + (this.rect.height - this.hitbox.top);
       }
-      this.vel.y = 0;
+      this.collidedY();
     }
     
-    if (Math.floor((this.pos.y - this.height) / this.game.TILE_SIZE) > this.game.map.height) {
+    if (Math.floor(this.rect.top / this.game.TILE_SIZE) > this.game.map.height) {
       this.die();
     }
   }
   
   getPositionedHitbox(actor) {
     return new Rect(
-      actor.pos.x + actor.hitbox.x,
-      (actor.pos.y - actor.height) + actor.hitbox.y,
+      actor.rect.x + actor.hitbox.x,
+      actor.rect.y + actor.hitbox.y,
       actor.hitbox.width,
       actor.hitbox.height,
     );
@@ -76,11 +85,20 @@ class Actor {
     return null;
   }
   
+  collidedX() {
+    this.vel.x = 0;
+    this.rect.left = Math.floor(this.pos.x);
+  }
+  collidedY() {
+    this.vel.y = 0;
+    this.rect.bottom = Math.floor(this.pos.y);
+  }
+  
   die() {
     this.game.actors.delete(this);
   }
   
   draw() {
-    this.game.ctx.drawImage(this.image, Math.floor(this.pos.x), Math.floor(this.pos.y - this.height));
+    this.game.ctx.drawImage(this.image, this.rect.x, this.rect.y, this.rect.width, this.rect.height);
   }
 }

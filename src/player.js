@@ -1,8 +1,6 @@
 class Player extends Actor {
   constructor(game) {
     super(game, new Rect(0, 0, 16, 32));
-    this.width = 16;
-    this.height = 32;
     
     // Player constants
     
@@ -13,6 +11,12 @@ class Player extends Actor {
     // Player setup
     
     this.image = this.game.IMAGES["goddard"];
+    this.setRect(new Rect(
+      this.pos.x,
+      this.pos.y,
+      this.image.width,
+      this.image.height,
+    ));
     
     this.reset();
   }
