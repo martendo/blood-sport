@@ -44,11 +44,27 @@ module.exports = function(grunt) {
       },
     },
     
+    concatOrder: [
+      "src/game-state.js",
+      "src/colour.js",
+      "src/rect.js",
+      "src/vector2.js",
+      "src/actor.js",
+      "src/player.js",
+      "src/block.js",
+      "src/map.js",
+      "src/input-handler.js",
+      "src/button.js",
+      "src/title-screen.js",
+      "src/game.js",
+      "src/main.js",
+    ],
+    
     concat: {
       build: {
         options: {
           separator: "\n",
-          end: "src/main.js",
+          order: "<%= concatOrder %>",
           // Immediately Invoked Function Expression
           prepend: "\"use strict\";(() => {",
           append: "})();",
@@ -60,7 +76,7 @@ module.exports = function(grunt) {
       debug: {
         options: {
           separator: "\n",
-          end: "src/main.js",
+          order: "<%= concatOrder %>",
           prepend: "\"use strict\";",
         },
         files: {
@@ -236,11 +252,16 @@ module.exports = function(grunt) {
     const options = this.options();
     this.files.forEach((file) => {
       var result = "";
-      file.src.forEach((filename) => {
-        if (filename === options.begin || filename === options.end) return;
-        result += grunt.file.read(filename); + options.separator
-      });
-      result += grunt.file.read(options.end);
+      var i = 0;
+      while (i < options.order.length) {
+        file.src.forEach((filename) => {
+          if (filename !== options.order[i]) {
+            return;
+          }
+          result += grunt.file.read(filename) + options.separator;
+          i++;
+        });
+      }
       
       if (options.prepend) {
         result = options.prepend + result;
