@@ -24,7 +24,7 @@ class Player extends Actor {
   }
   
   update() {
-    if (this.game.inputHandler.newKeys.has("Spacebar")) {
+    if (this.game.inputHandler.newKeys.has("Spacebar") && this.isOnGround()) {
       // Jump!
       this.vel.y = - this.JUMP_VEL;
     }

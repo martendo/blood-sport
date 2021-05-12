@@ -15,6 +15,8 @@ class Game {
     this.DIR_LEFT = -1;
     this.DIR_RIGHT = +1;
     
+    this.COLLISION_OFFSET = 4;
+    
     this.IMAGE_SRCS = {
       "{{ BASE64:img/goddard.png }}": "goddard",
     };
