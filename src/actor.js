@@ -1,5 +1,7 @@
-class Actor {
+class Actor extends Sprite {
   constructor(game, hitbox, pos = null) {
+    super();
+    
     this.game = game;
     
     this.enabled = true;
@@ -96,9 +98,5 @@ class Actor {
   
   die() {
     this.game.actors.delete(this);
-  }
-  
-  draw() {
-    this.game.ctx.drawImage(this.image, this.rect.x, this.rect.y, this.rect.width, this.rect.height);
   }
 }

@@ -33,8 +33,9 @@ class TitleScreen {
     this.button.rect.y = (this.game.displayCanvas.height / 2) - (this.BUTTON_HEIGHT / 2);
   }
   
-  draw() {
+  draw(ctx) {
     this.game.drawText({
+      ctx: ctx,
       text: this.game.TITLE,
       x: this.game.displayCanvas.width / 2,
       y: this.game.displayCanvas.height / 3,
@@ -44,6 +45,7 @@ class TitleScreen {
     });
     
     this.game.drawText({
+      ctx: ctx,
       text: "Copyright (C) 2021 Martin Baldwin",
       x: 0 + this.PADDING,
       y: this.game.displayCanvas.height - 25 - this.PADDING,
@@ -52,18 +54,20 @@ class TitleScreen {
       textBaseline: "bottom",
     });
     this.game.drawText({
+      ctx: ctx,
       text: "Licensed under the GNU General Public License v3.0",
       x: 0 + this.PADDING,
       y: this.game.displayCanvas.height - this.PADDING,
     });
     
     this.game.drawText({
+      ctx: ctx,
       text: "Last modified {{ DATE }}",
       x: this.game.displayCanvas.width - this.PADDING,
       y: this.game.displayCanvas.height - this.PADDING,
       textAlign: "end",
     });
     
-    this.button.draw();
+    this.button.draw(ctx);
   }
 }

@@ -96,11 +96,11 @@ class GameMap {
     return this.blockMap[pos];
   }
   
-  draw() {
-    this.game.ctx.fillStyle = this.backgroundColour;
-    this.game.ctx.fillRect(0, 0, this.game.canvas.width, this.game.canvas.height);
+  draw(ctx) {
+    ctx.fillStyle = this.backgroundColour;
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     for (const block of this.blocks) {
-      block.draw();
+      block.draw(ctx);
     }
   }
   

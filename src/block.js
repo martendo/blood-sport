@@ -1,5 +1,7 @@
-class Block {
+class Block extends Sprite {
   constructor(game, map, x, y, tileId, flip) {
+    super();
+    
     this.SOLIDS_START = 1;
     
     this.game = game;
@@ -24,9 +26,5 @@ class Block {
   flipImage(flip) {
     this.flip = flip;
     // TODO: Actually flip the image
-  }
-  
-  draw() {
-    this.game.ctx.drawImage(this.image, this.rect.x, this.rect.y, this.rect.width, this.rect.height);
   }
 }

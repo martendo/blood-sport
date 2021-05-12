@@ -21,12 +21,13 @@ class Button {
     this.func();
   }
   
-  draw() {
-    this.game.displayCtx.fillStyle = "#000000";
-    this.game.displayCtx.globalAlpha = this.isHovered() ? 0.25 : 0.125;
-    this.game.displayCtx.fillRect(this.rect.x, this.rect.y, this.rect.width, this.rect.height);
-    this.game.displayCtx.globalAlpha = 1;
+  draw(ctx) {
+    ctx.fillStyle = "#000000";
+    ctx.globalAlpha = this.isHovered() ? 0.25 : 0.125;
+    ctx.fillRect(this.rect.x, this.rect.y, this.rect.width, this.rect.height);
+    ctx.globalAlpha = 1;
     this.game.drawText({
+      ctx: ctx,
       text: this.text,
       x: this.rect.x + (this.rect.width / 2),
       y: this.rect.y + (this.rect.height / 2),

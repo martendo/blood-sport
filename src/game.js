@@ -87,17 +87,17 @@ class Game {
     });
   }
   
-  drawText({text, x, y, font, textAlign, textBaseline}) {
+  drawText({ctx, text, x, y, font, textAlign, textBaseline}) {
     if (font != null) {
-      this.displayCtx.font = font;
+      ctx.font = font;
     }
     if (textAlign != null) {
-      this.displayCtx.textAlign = textAlign;
+      ctx.textAlign = textAlign;
     }
     if (textBaseline != null) {
-      this.displayCtx.textBaseline = textBaseline;
+      ctx.textBaseline = textBaseline;
     }
-    this.displayCtx.fillText(text, x, y);
+    ctx.fillText(text, x, y);
   }
   
   updateCanvasSize() {
@@ -186,12 +186,12 @@ class Game {
     
     switch (this.state) {
       case GameState.TITLE_SCREEN:
-        this.titleScreen.draw();
+        this.titleScreen.draw(this.displayCtx);
         break;
       case GameState.IN_GAME:
-        this.map.draw();
+        this.map.draw(this.ctx);
         for (const actor of this.actors) {
-          actor.draw();
+          actor.draw(this.ctx);
         }
         this.displayCtx.drawImage(this.canvas, 0, 0, this.displayCanvas.width, this.displayCanvas.height);
         break;
