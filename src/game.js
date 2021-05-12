@@ -9,7 +9,7 @@ class Game {
     this.MAX_STEPS = this.FPS * 4;
     this.DISPLAY_SCALE = 4;
     
-    this.GRAVITY = 0.5;
+    this.GRAVITY = 0.25;
     this.MAX_VELY = 8;
     
     this.DIR_LEFT = -1;
