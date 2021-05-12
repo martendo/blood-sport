@@ -11,6 +11,7 @@ class InputHandler {
     this.pointer = {
       pos: new Vector2(),
       pressed: false,
+      clicked: false,
     };
     window.addEventListener("pointerdown", (event) => this.updatePointer(event));
     window.addEventListener("pointerup", (event) => this.updatePointer(event));
@@ -52,15 +53,20 @@ class InputHandler {
     }
     this.pointer.pos = new Vector2(event.clientX, event.clientY);
     if (event.type !== "pointermove") {
-      this.pointer.pressed = event.type === "pointerdown";
+      this.pointer.clicked = event.type === "pointerdown";
+      this.pointer.pressed = this.pointer.clicked;
     }
   }
   
   update() {
+    // Update newKeys
     this.newKeys = new Set(this.keys);
     for (let key of this.previousKeys) {
       this.newKeys.delete(key);
     }
     this.previousKeys = new Set(this.keys);
+    
+    // Update pointer.clicked
+    this.pointer.clicked = false;
   }
 }

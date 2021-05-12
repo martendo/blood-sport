@@ -152,7 +152,7 @@ class Game {
   }
   
   handleEvents() {
-    if (!this.inputHandler.pointer.pressed) {
+    if (!this.inputHandler.pointer.clicked) {
       return;
     }
     for (const button of this.buttons) {
