@@ -8,6 +8,8 @@ class Player extends Actor {
     this.FRICTION = 0.125;
     this.MAX_VELX = 2;
     
+    this.JUMP_VEL = 5;
+    
     // Player setup
     
     this.image = this.game.IMAGES["goddard"];
@@ -22,6 +24,11 @@ class Player extends Actor {
   }
   
   update() {
+    if (this.game.inputHandler.newKeys.has("Spacebar")) {
+      // Jump!
+      this.vel.y = - this.JUMP_VEL;
+    }
+    
     if (this.game.inputHandler.keys.has("ArrowRight")) {
       this.vel.x += this.ACCEL;
     }
