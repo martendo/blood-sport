@@ -16,6 +16,8 @@ class Game {
       "{{ BASE64:img/goddard.png }}": "goddard",
     };
     
+    this.TILE_SIZE = 8;
+    
     // Game setup
     
     this.running = false;
@@ -28,6 +30,7 @@ class Game {
     this.buttons = new Set();
     this.titleScreen = new TitleScreen(this);
     
+    this.map = new GameMap(this);
     this.actors = new Set();
     
     this.displayCanvas = document.getElementById("displayCanvas");
@@ -37,6 +40,8 @@ class Game {
     this.ctx = this.canvas.getContext("2d");
     this.updateCanvasSize();
     
+    this.loadTileset();
+    
     this.IMAGES = {};
     Promise.all(Object.keys(this.IMAGE_SRCS).map(this.loadImage)).then((images) => {
       images.forEach((img) => {
@@ -44,6 +49,26 @@ class Game {
       });
       this.setup();
     });
+  }
+  
+  loadTileset() {
+    this.TILESET = [];
+    const img = new Image();
+    img.addEventListener("load", () => this.extractTilesetTiles(img));
+    img.src = "{{ BASE64:img/tiles.png }}";
+  }
+  extractTilesetTiles(img) {
+    const tileWidth = Math.floor(img.width / this.TILE_SIZE);
+    const tileHeight = Math.floor(img.height / this.TILE_SIZE);
+    for (let y = 0; y < tileHeight; y++) {
+      for (let x = 0; x < tileWidth; x++) {
+        const subcanvas = document.createElement("canvas");
+        subcanvas.width = this.TILE_SIZE;
+        subcanvas.height = this.TILE_SIZE;
+        subcanvas.getContext("2d").drawImage(img, x * this.TILE_SIZE, y * this.TILE_SIZE, this.TILE_SIZE, this.TILE_SIZE, 0, 0, subcanvas.width, subcanvas.height);
+        this.TILESET.push(subcanvas);
+      }
+    }
   }
   
   setup () {
@@ -156,6 +181,7 @@ class Game {
         this.titleScreen.draw();
         break;
       case GameState.IN_GAME:
+        this.map.draw();
         for (const actor of this.actors) {
           actor.draw();
         }

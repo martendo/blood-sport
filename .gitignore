@@ -3,5 +3,9 @@
 /style.css
 /script.js
 
+# Tiled files
+*.tiled-project
+*.tiled-session
+
 # Dependency directories
 /node_modules/
