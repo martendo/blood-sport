@@ -98,7 +98,7 @@ class GameMap {
   
   draw(ctx) {
     ctx.fillStyle = this.backgroundColour;
-    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.fillRect(0, 0, this.width * this.game.TILE_SIZE, this.height * this.game.TILE_SIZE);
     for (const block of this.blocks) {
       block.draw(ctx);
     }
