@@ -43,22 +43,21 @@ class Game {
     this.ctx = this.canvas.getContext("2d");
     this.updateCanvasSize();
     
-    this.loadTileset();
-    
     this.IMAGES = {};
     Promise.all(Object.keys(this.IMAGE_SRCS).map(this.loadImage)).then((images) => {
       images.forEach((img) => {
         this.IMAGES[this.IMAGE_SRCS[img.src]] = img;
       });
-      this.setup();
+      this.loadTileset();
     });
   }
   
   loadTileset() {
     this.TILESET = [];
-    const img = new Image();
-    img.addEventListener("load", () => this.extractTilesetTiles(img));
-    img.src = "{{ BASE64:img/tiles.png }}";
+    this.loadImage("{{ BASE64:img/tiles.png }}").then((img) => {
+      this.extractTilesetTiles(img);
+      this.setup();
+    });
   }
   extractTilesetTiles(img) {
     const tileWidth = Math.floor(img.width / this.TILE_SIZE);
