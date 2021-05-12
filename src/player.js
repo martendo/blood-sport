@@ -1,6 +1,13 @@
 class Player extends Actor {
   constructor(game) {
-    super(game);
+    super(game, {
+      x: 0,
+      y: 0,
+      width: 16,
+      height: 32,
+    });
+    this.width = 16;
+    this.height = 32;
     
     // Player constants
     
