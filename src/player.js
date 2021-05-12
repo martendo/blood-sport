@@ -1,11 +1,6 @@
 class Player extends Actor {
   constructor(game) {
-    super(game, {
-      x: 0,
-      y: 0,
-      width: 16,
-      height: 32,
-    });
+    super(game, new Rect(0, 0, 16, 32));
     this.width = 16;
     this.height = 32;
     

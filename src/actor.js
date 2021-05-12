@@ -19,20 +19,20 @@ class Actor {
     block = this.blockColliding();
     if (block != null) {
       if (this.vel.x > 0) {
-        this.pos.x = block.x * this.game.TILE_SIZE - (this.hitbox.x + this.hitbox.width);
+        this.pos.x = block.x * this.game.TILE_SIZE - this.hitbox.right;
       } else if (this.vel.x < 0) {
-        this.pos.x = (block.x * this.game.TILE_SIZE + this.game.TILE_SIZE) - this.hitbox.x;
+        this.pos.x = (block.x * this.game.TILE_SIZE + this.game.TILE_SIZE) - this.hitbox.left;
       }
       this.vel.x = 0;
     }
     
     // End of map
     const mapWidthPx = this.game.map.width * this.game.TILE_SIZE;
-    if (this.pos.x + this.hitbox.x < 0) {
+    if (this.pos.x + this.hitbox.left < 0) {
       this.pos.x = 0 - this.hitbox.x;
       this.vel.x = 0;
-    } else if (this.pos.x + (this.hitbox.x + this.hitbox.width) > mapWidthPx) {
-      this.pos.x = mapWidthpx - (this.hitbox.x + this.hitbox.width);
+    } else if (this.pos.x + this.hitbox.right > mapWidthPx) {
+      this.pos.x = mapWidthpx - this.hitbox.right;
       this.vel.x = 0;
     }
     
@@ -40,9 +40,9 @@ class Actor {
     block = this.blockColliding();
     if (block != null) {
       if (this.vel.y > 0) {
-        this.pos.y = block.y * this.game.TILE_SIZE + (this.height - (this.hitbox.y + this.hitbox.height));
+        this.pos.y = block.y * this.game.TILE_SIZE + (this.height - this.hitbox.bottom);
       } else if (this.vel.y < 0) {
-        this.pos.y = (block.y * this.game.TILE_SIZE + this.game.TILE_SIZE) + (this.height - this.hitbox.y);
+        this.pos.y = (block.y * this.game.TILE_SIZE + this.game.TILE_SIZE) + (this.height - this.hitbox.top);
       }
       this.vel.y = 0;
     }
@@ -53,18 +53,18 @@ class Actor {
   }
   
   getPositionedHitbox(actor) {
-    return {
-      x: actor.pos.x + actor.hitbox.x,
-      y: (actor.pos.y - actor.height) + actor.hitbox.y,
-      width: actor.hitbox.width,
-      height: actor.hitbox.height,
-    };
+    return new Rect(
+      actor.pos.x + actor.hitbox.x,
+      (actor.pos.y - actor.height) + actor.hitbox.y,
+      actor.hitbox.width,
+      actor.hitbox.height,
+    );
   }
   
   blockColliding() {
     const hitbox = this.getPositionedHitbox(this);
-    for (let y = hitbox.y; y < hitbox.y + hitbox.height; y++) {
-      for (let x = hitbox.x; x < hitbox.x + hitbox.width; x++) {
+    for (let y = hitbox.top; y < hitbox.bottom; y++) {
+      for (let x = hitbox.left; x < hitbox.right; x++) {
         const tileX = Math.floor(x / this.game.TILE_SIZE);
         const tileY = Math.floor(y / this.game.TILE_SIZE);
         const block = this.game.map.getBlock(tileX, tileY);
