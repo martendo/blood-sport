@@ -99,4 +99,17 @@ class Actor extends Sprite {
   die() {
     this.game.actors.delete(this);
   }
+  
+  draw(ctx) {
+    if (this.direction === this.game.DIR_LEFT) {
+      // Images are right-facing, flip them horizontally
+      ctx.scale(-1, 1);
+      this.rect.left = this.rect.right * -1;
+      super.draw(ctx);
+      this.rect.left = Math.floor(this.pos.x);
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+    } else {
+      super.draw(ctx);
+    }
+  }
 }
