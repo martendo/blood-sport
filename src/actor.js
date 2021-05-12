@@ -19,9 +19,9 @@ class Actor {
     block = this.blockColliding();
     if (block != null) {
       if (this.vel.x > 0) {
-        this.pos.x = block.x * this.game.TILE_SIZE - this.hitbox.right;
+        this.pos.x = block.rect.left - this.hitbox.right;
       } else if (this.vel.x < 0) {
-        this.pos.x = (block.x * this.game.TILE_SIZE + this.game.TILE_SIZE) - this.hitbox.left;
+        this.pos.x = block.rect.right - this.hitbox.left;
       }
       this.vel.x = 0;
     }
@@ -40,9 +40,9 @@ class Actor {
     block = this.blockColliding();
     if (block != null) {
       if (this.vel.y > 0) {
-        this.pos.y = block.y * this.game.TILE_SIZE + (this.height - this.hitbox.bottom);
+        this.pos.y = block.rect.top + (this.height - this.hitbox.bottom);
       } else if (this.vel.y < 0) {
-        this.pos.y = (block.y * this.game.TILE_SIZE + this.game.TILE_SIZE) + (this.height - this.hitbox.top);
+        this.pos.y = block.rect.bottom + (this.height - this.hitbox.top);
       }
       this.vel.y = 0;
     }

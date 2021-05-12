@@ -13,6 +13,12 @@ class Block {
     
     this.x = x;
     this.y = y;
+    this.rect = new Rect(
+      this.x * this.game.TILE_SIZE,
+      this.y * this.game.TILE_SIZE,
+      this.game.TILE_SIZE,
+      this.game.TILE_SIZE,
+    );
   }
   
   flipImage(flip) {
@@ -21,6 +27,6 @@ class Block {
   }
   
   draw() {
-    this.game.ctx.drawImage(this.image, this.x * this.game.TILE_SIZE, this.y * this.game.TILE_SIZE);
+    this.game.ctx.drawImage(this.image, this.rect.x, this.rect.y, this.rect.width, this.rect.height);
   }
 }
