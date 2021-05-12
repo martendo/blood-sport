@@ -3,6 +3,8 @@ class InputHandler {
     this.game = game;
     
     this.keys = new Set();
+    this.previousKeys = new Set();
+    this.newKeys = new Set();
     window.addEventListener("keydown", (event) => this.updateKey(event));
     window.addEventListener("keyup", (event) => this.updateKey(event));
     
@@ -29,6 +31,10 @@ class InputHandler {
       case "D":
         key = "ArrowRight";
         break;
+      case "SPACEBAR":
+      case " ":
+        key = "Spacebar";
+        break;
       default:
         return;
     }
@@ -48,5 +54,13 @@ class InputHandler {
     if (event.type !== "pointermove") {
       this.pointer.pressed = event.type === "pointerdown";
     }
+  }
+  
+  update() {
+    this.newKeys = new Set(this.keys);
+    for (let key of this.previousKeys) {
+      this.newKeys.delete(key);
+    }
+    this.previousKeys = new Set(this.keys);
   }
 }
