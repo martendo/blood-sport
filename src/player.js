@@ -18,7 +18,7 @@ class Player extends Actor {
       this.image.height,
     ));
     
-    this.reset();
+    this.reset(undefined, this.game.DIR_RIGHT);
   }
   
   update() {
@@ -49,6 +49,12 @@ class Player extends Actor {
     }
     
     super.update();
+    
+    if (this.vel.x > 0) {
+      this.direction = this.game.DIR_RIGHT;
+    } else if (this.vel.x < 0) {
+      this.direction = this.game.DIR_LEFT;
+    }
   }
   
   reset(pos = new Vector2(), direction = null) {
