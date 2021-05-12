@@ -9,9 +9,16 @@ class GameMap {
     
     this.tilesets = {};
     
+    this.EMPTY_BLOCK = new Block(this.game, this, 0, 0, 0, {
+        h: false,
+        v: false,
+        d: false,
+    });
+    
     this.backgroundColour = Colour.PLACEHOLDER;
     
     this.blocks = new Set();
+    this.blockMap = {};
   }
   
   getTilemap() {
@@ -43,6 +50,7 @@ class GameMap {
   
   createBlocks() {
     this.blocks.clear();
+    this.blockMap = {};
     for (let y = 0; y < this.height; y++) {
       for (let x = 0; x < this.width; x++) {
         const pos = y * this.width + x;
@@ -54,6 +62,7 @@ class GameMap {
         
         const block = new Block(this.game, this, x, y, tileId - tileset["firstgid"], flip);
         this.blocks.add(block);
+        this.blockMap[pos] = block;
       }
     }
   }
@@ -74,6 +83,17 @@ class GameMap {
       }
     }
     return [this.EMPTY_TILE, null, flip];
+  }
+  
+  getBlock(x, y) {
+    if (x < 0 || y < 0 || x >= this.width || y >= this.height) {
+      return this.EMPTY_BLOCK;
+    }
+    const pos = y * this.width + x;
+    if (!this.blockMap.hasOwnProperty(pos)) {
+      return this.EMPTY_BLOCK;
+    }
+    return this.blockMap[pos];
   }
   
   draw() {

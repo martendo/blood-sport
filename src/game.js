@@ -30,12 +30,6 @@ class Game {
     
     this.inputHandler = new InputHandler(this);
     
-    this.buttons = new Set();
-    this.titleScreen = new TitleScreen(this);
-    
-    this.map = new GameMap(this);
-    this.actors = new Set();
-    
     this.displayCanvas = document.getElementById("displayCanvas");
     this.displayCtx = this.displayCanvas.getContext("2d");
     window.addEventListener("resize", () => this.updateCanvasSize());
@@ -74,6 +68,10 @@ class Game {
   }
   
   setup () {
+    this.buttons = new Set();
+    this.titleScreen = new TitleScreen(this);
+    
+    this.map = new GameMap(this);
     this.actors = new Set();
     this.player = new Player(this);
     
