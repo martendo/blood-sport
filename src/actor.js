@@ -2,6 +2,7 @@ class Actor {
   constructor(game, pos = null) {
     this.game = game;
     
+    this.enabled = true;
     this.pos = new Vector2(pos);
     this.vel = new Vector2();
     this.direction = this.game.DIR_LEFT;
