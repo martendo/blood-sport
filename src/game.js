@@ -170,6 +170,10 @@ class Game {
         this.titleScreen.update();
         break;
       case GameState.IN_GAME:
+        if (!this.map.isReady) {
+          break;
+        }
+        
         for (const actor of this.actors) {
           // Apply gravity to all actors
           if (!actor.enabled) {
@@ -193,6 +197,10 @@ class Game {
         this.titleScreen.draw(this.displayCtx);
         break;
       case GameState.IN_GAME:
+        if (!this.map.isReady) {
+          break;
+        }
+        
         this.map.draw(this.ctx);
         for (const actor of this.actors) {
           actor.draw(this.ctx);

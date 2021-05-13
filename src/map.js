@@ -20,6 +20,8 @@ class GameMap {
     this.blocks = new Set();
     this.targets = new Set();
     this.blockMap = {};
+    
+    this.isReady = false;
   }
   
   getLayer(type) {
@@ -32,6 +34,7 @@ class GameMap {
   }
   
   load(map) {
+    this.isReady = false;
     fetch(`maps/${map}.json`)
       .then((response) => response.json())
       .then((data) => this.setup(data));
@@ -152,8 +155,9 @@ class GameMap {
     }
   }
   
-  reset() {
-    this.createBlocks();
-    this.createTargets();
+  async reset() {
+    await this.createBlocks();
+    await this.createTargets();
+    this.isReady = true;
   }
 }
