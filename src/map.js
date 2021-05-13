@@ -18,16 +18,17 @@ class GameMap {
     this.backgroundColour = Colour.PLACEHOLDER;
     
     this.blocks = new Set();
+    this.targets = new Set();
     this.blockMap = {};
   }
   
-  getTilemap() {
+  getLayer(type) {
     for (const layer of this.data["layers"]) {
-      if (layer["type"] === "tilelayer") {
-        return layer["data"];
+      if (layer["type"] === type) {
+        return layer;
       }
     }
-    throw `No tile layer found in maps/${map}.json"`;
+    throw `No layer of type "${type}" found in GameMap.data`;
   }
   
   load(map) {
@@ -41,9 +42,18 @@ class GameMap {
     this.backgroundColour = this.data["backgroundcolor"];
     
     // Tilemap
-    this.tilemap = this.getTilemap();
+    this.tilemap = this.getLayer("tilelayer")["data"];
     this.width = this.data["width"];
     this.height = this.data["height"];
+    
+    // Target Data
+    this.objects = this.getLayer("objectgroup")["objects"];
+    this.targetData = [];
+    for (const object of this.objects) {
+      if (object.hasOwnProperty("gid")) {
+        this.targetData.push(object);
+      }
+    }
     
     this.reset();
   }
@@ -67,6 +77,24 @@ class GameMap {
     }
   }
   
+  async createTargets() {
+    for (const target of this.targets) {
+      this.game.actors.delete(target);
+    }
+    this.targets.clear();
+    for (const target of this.targetData) {
+      const [tileId, tileset, flip] = this._resolveGid(target["gid"]);
+      const tile = await this.getTile(
+        tileId - tileset["firstgid"],
+        `maps/${tileset["source"]}`,
+      )
+      this.targets.add(new TARGET_TYPES[tile["type"]](
+        this.game,
+        new Vector2(target["x"], target["y"]),
+      ));
+    }
+  }
+  
   _resolveGid(gid) {
     const flip = {
       h: Boolean(gid & this.TILE_FLIP_H),
@@ -83,6 +111,26 @@ class GameMap {
       }
     }
     return [this.EMPTY_TILE, null, flip];
+  }
+  
+  async getTileset(tileset) {
+    if (this.tilesets.hasOwnProperty(tileset)) {
+      return this.tilesets[tileset];
+    }
+    const response = await fetch(tileset);
+    const data = await response.json();
+    this.tilesets[tileset] = data;
+    return data;
+  }
+  
+  async getTile(tileId, tileset) {
+    const data = await this.getTileset(tileset);
+    for (const tile of data["tiles"]) {
+      if (tile["id"] == tileId) {
+        return tile;
+      }
+    }
+    return null;
   }
   
   getBlock(x, y) {
@@ -106,5 +154,6 @@ class GameMap {
   
   reset() {
     this.createBlocks();
+    this.createTargets();
   }
 }

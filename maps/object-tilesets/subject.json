@@ -1,0 +1,19 @@
+{ "columns":1,
+ "image":"..\/..\/img\/enemies\/subject.png",
+ "imageheight":32,
+ "imagewidth":16,
+ "margin":0,
+ "name":"subject",
+ "spacing":0,
+ "tilecount":1,
+ "tiledversion":"2021.03.23",
+ "tileheight":32,
+ "tiles":[
+        {
+         "id":0,
+         "type":"Subject"
+        }],
+ "tilewidth":16,
+ "type":"tileset",
+ "version":1.5
+}

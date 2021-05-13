@@ -14,9 +14,92 @@
          "width":32,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":2,
+         "name":"Objects",
+         "objects":[
+                {
+                 "gid":3,
+                 "height":32,
+                 "id":1,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":128,
+                 "y":56
+                }, 
+                {
+                 "gid":3,
+                 "height":32,
+                 "id":2,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":224,
+                 "y":104
+                }, 
+                {
+                 "gid":3,
+                 "height":32,
+                 "id":3,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":16,
+                 "y":168
+                }, 
+                {
+                 "gid":3,
+                 "height":32,
+                 "id":4,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":144,
+                 "y":224
+                }, 
+                {
+                 "gid":3,
+                 "height":32,
+                 "id":5,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":168,
+                 "y":176
+                }, 
+                {
+                 "gid":3,
+                 "height":32,
+                 "id":6,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":208,
+                 "y":224
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":2,
- "nextobjectid":1,
+ "nextlayerid":3,
+ "nextobjectid":7,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2021.03.23",
@@ -25,6 +108,10 @@
         {
          "firstgid":1,
          "source":"tiles.json"
+        }, 
+        {
+         "firstgid":3,
+         "source":"object-tilesets\/subject.json"
         }],
  "tilewidth":8,
  "type":"map",
