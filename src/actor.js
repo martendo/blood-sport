@@ -130,7 +130,7 @@ class Actor extends Sprite {
   }
   
   die() {
-    this.game.actors.delete(this);
+    this.kill();
   }
   
   hitActor(actor) {

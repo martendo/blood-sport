@@ -50,6 +50,7 @@ module.exports = function(grunt) {
       "src/rect.js",
       "src/vector2.js",
       "src/sprite.js",
+      "src/sprite-group.js",
       "src/actor.js",
       "src/player.js",
       "src/target.js",

@@ -17,8 +17,8 @@ class GameMap {
     
     this.backgroundColour = Colour.PLACEHOLDER;
     
-    this.blocks = new Set();
-    this.targets = new Set();
+    this.blocks = new SpriteGroup();
+    this.targets = new SpriteGroup();
     this.blockMap = {};
     
     this.isReady = false;
@@ -62,7 +62,7 @@ class GameMap {
   }
   
   createBlocks() {
-    this.blocks.clear();
+    this.blocks.empty();
     this.blockMap = {};
     for (let y = 0; y < this.height; y++) {
       for (let x = 0; x < this.width; x++) {
@@ -84,7 +84,7 @@ class GameMap {
     for (const target of this.targets) {
       this.game.actors.delete(target);
     }
-    this.targets.clear();
+    this.targets.empty();
     for (const target of this.targetData) {
       const [tileId, tileset, flip] = this._resolveGid(target["gid"]);
       const tile = await this.getTile(

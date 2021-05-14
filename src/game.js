@@ -77,7 +77,7 @@ class Game {
     this.titleScreen = new TitleScreen(this);
     
     this.map = new GameMap(this);
-    this.actors = new Set();
+    this.actors = new SpriteGroup();
     this.player = new Player(this);
     
     this.start();
