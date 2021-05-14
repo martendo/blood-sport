@@ -147,6 +147,12 @@ class GameMap {
     return this.blockMap[pos];
   }
   
+  update() {
+    for (const target of this.targets) {
+      target.update();
+    }
+  }
+  
   draw(ctx) {
     ctx.fillStyle = this.backgroundColour;
     ctx.fillRect(0, 0, this.width * this.game.TILE_SIZE, this.height * this.game.TILE_SIZE);

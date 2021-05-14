@@ -4,6 +4,8 @@ class Game {
     
     this.TITLE = document.title;
     
+    this.PADDING = 15;
+    
     this.FPS = 60;
     this.TIMESTEP = 1000 / this.FPS;
     this.MAX_STEPS = this.FPS * 4;
@@ -184,6 +186,7 @@ class Game {
             actor.vel.y = this.MAX_VELY;
           }
         }
+        this.map.update();
         this.player.update();
         break;
     }
@@ -206,6 +209,15 @@ class Game {
           actor.draw(this.ctx);
         }
         this.displayCtx.drawImage(this.canvas, 0, 0, this.displayCanvas.width, this.displayCanvas.height);
+        this.drawText({
+          ctx: this.displayCtx,
+          text: this.player.health,
+          x: this.displayCanvas.width - this.PADDING,
+          y: this.PADDING,
+          font: "25px sans-serif",
+          textAlign: "end",
+          textBaseline: "top",
+        });
         break;
     }
   }

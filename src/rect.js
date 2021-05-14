@@ -65,4 +65,11 @@ class Rect {
   set height(value) {
     this._height = value;
   }
+  
+  colliderect(rect) {
+    return (this.left < rect.right &&
+      this.right > rect.left &&
+      this.top < rect.bottom &&
+      this.bottom > rect.top);
+  }
 }

@@ -58,6 +58,13 @@ class Actor extends Sprite {
       this.collidedY();
     }
     
+    // Actor-Actor collision
+    for (const actor of this.game.actors) {
+      if (this.actorcollide(this, actor)) {
+        this.hitActor(actor);
+      }
+    }
+    
     if (Math.floor(this.rect.top / this.game.TILE_SIZE) > this.game.map.height) {
       this.die();
     }
@@ -113,8 +120,21 @@ class Actor extends Sprite {
     return false;
   }
   
+  actorcollide(actor1, actor2) {
+    if (actor1 === actor2) {
+      return false;
+    }
+    const hitbox1 = this.getPositionedHitbox(actor1);
+    const hitbox2 = this.getPositionedHitbox(actor2);
+    return hitbox1.colliderect(hitbox2);
+  }
+  
   die() {
     this.game.actors.delete(this);
+  }
+  
+  hitActor(actor) {
+    return;
   }
   
   draw(ctx) {

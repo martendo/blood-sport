@@ -10,6 +10,10 @@ class Player extends Actor {
     
     this.JUMP_VEL = 5;
     
+    this.ATTACK_TIME = 500;
+    
+    this.START_HEALTH = 100;
+    
     // Player setup
     
     this.image = this.game.IMAGES["goddard"];
@@ -24,6 +28,10 @@ class Player extends Actor {
   }
   
   update() {
+    if (this.game.inputHandler.newKeys.has("Spacebar")) {
+      this.attack();
+    }
+    
     if (this.game.inputHandler.newKeys.has("ArrowUp") && this.isOnGround()) {
       // Jump!
       this.vel.y = - this.JUMP_VEL;
@@ -64,10 +72,30 @@ class Player extends Actor {
     }
   }
   
+  attack() {
+    console.log("attack()");
+    this.isAttacking = true;
+    setTimeout(() => this.isAttacking = false, this.ATTACK_TIME);
+  }
+  
+  hurt(damage = 1) {
+    this.health -= damage;
+    if (this.health < 1) {
+      this.die();
+    }
+  }
+  
+  die() {
+    console.log("deadish: end");
+  }
+  
   reset(pos = new Vector2(), direction = null) {
     this.pos = new Vector2(pos);
     if (direction != null) {
       this.direction = direction;
     }
+    
+    this.health = this.START_HEALTH;
+    this.isAttacking = false;
   }
 }
