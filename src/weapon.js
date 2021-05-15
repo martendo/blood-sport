@@ -5,7 +5,7 @@ class Weapon extends Sprite {
     this.parent = parent;
     
     this.pos = new Vector2();
-    this.image = this.game.IMAGES["weapon"];
+    this.image = this.game.SPRITESHEETS["weapon"][0];
     this.rect = new Rect(
       0,
       0,

@@ -3,7 +3,7 @@ class Subject extends Target {
     super(game);
     
     this.pos = pos;
-    this.image = this.game.IMAGES["targets/subject"];
+    this.image = this.game.SPRITESHEETS["targets/subject"][0];
     this.setRect(new Rect(
       0,
       0,

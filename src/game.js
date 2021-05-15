@@ -19,7 +19,7 @@ class Game {
     
     this.COLLISION_OFFSET = 4;
     
-    this.IMAGE_SRCS = {
+    this.SPRITESHEET_SRCS = {
       "{{ BASE64:img/goddard.png }}": "goddard",
       "{{ BASE64:img/targets/subject.png }}": "targets/subject",
       "{{ BASE64:img/weapon.png }}": "weapon",
@@ -43,23 +43,13 @@ class Game {
     this.ctx = this.canvas.getContext("2d");
     this.updateCanvasSize();
     
-    this.IMAGES = {};
-    Promise.all(Object.keys(this.IMAGE_SRCS).map(this.loadImage)).then((images) => {
-      images.forEach((img) => {
-        this.IMAGES[this.IMAGE_SRCS[img.src]] = img;
-      });
-      this.loadTileset();
-    });
+    this.setup();
   }
   
-  loadTileset() {
+  async loadTileset() {
     this.TILESET = [];
-    this.loadImage("{{ BASE64:img/tiles.png }}").then((img) => {
-      this.extractTilesetTiles(img);
-      this.setup();
-    });
-  }
-  extractTilesetTiles(img) {
+    
+    const img = await this.loadImage("{{ BASE64:img/tiles.png }}");
     const tileWidth = Math.floor(img.width / this.TILE_SIZE);
     const tileHeight = Math.floor(img.height / this.TILE_SIZE);
     for (let y = 0; y < tileHeight; y++) {
@@ -73,7 +63,33 @@ class Game {
     }
   }
   
-  setup () {
+  async loadSpritesheets() {
+    this.SPRITESHEETS = {};
+    
+    await this.loadSpritesheet("goddard", 16, 32);
+    await this.loadSpritesheet("targets/subject", 16, 32);
+    await this.loadSpritesheet("weapon", 32, 8);
+  }
+  async loadSpritesheet(name, width, height) {
+    const spritesheet = await this.loadImage(`img/${name}.png`);
+    
+    const frames = [];
+    for (let y = 0; y < Math.floor(spritesheet.height / height); y++) {
+      for (let x = 0; x < Math.floor(spritesheet.width / width); x++) {
+        const subcanvas = document.createElement("canvas");
+        subcanvas.width = width;
+        subcanvas.height = height;
+        subcanvas.getContext("2d").drawImage(spritesheet, x * width, y * height, width, height, 0, 0, subcanvas.width, subcanvas.height);
+        frames.push(subcanvas);
+      }
+    }
+    this.SPRITESHEETS[name] = frames;
+  }
+  
+  async setup () {
+    await this.loadSpritesheets();
+    await this.loadTileset();
+    
     this.buttons = new Set();
     this.titleScreen = new TitleScreen(this);
     

@@ -16,7 +16,7 @@ class Player extends Actor {
     
     // Player setup
     
-    this.image = this.game.IMAGES["goddard"];
+    this.image = this.game.SPRITESHEETS["goddard"][0];
     this.setRect(new Rect(
       0,
       0,
