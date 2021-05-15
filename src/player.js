@@ -1,6 +1,6 @@
 class Player extends Actor {
   constructor(game) {
-    super(game, new Rect(0, 0, 16, 32));
+    super(game);
     
     // Player constants
     
@@ -23,6 +23,7 @@ class Player extends Actor {
       this.image.width,
       this.image.height,
     ));
+    this.hitbox = new Rect(0, 0, 16, 32);
     
     this.reset(undefined, this.game.DIR_RIGHT);
   }

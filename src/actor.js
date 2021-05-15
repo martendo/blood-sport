@@ -1,15 +1,15 @@
 class Actor extends Sprite {
-  constructor(game, hitbox, pos = null) {
+  constructor(game) {
     super();
     
     this.game = game;
     
     this.enabled = true;
-    this.pos = new Vector2(pos);
+    this.pos = new Vector2();
     this.vel = new Vector2();
     this.direction = this.game.DIR_LEFT;
     
-    this.hitbox = hitbox;
+    this.hitbox = new Rect();
     
     this.game.actors.add(this);
   }

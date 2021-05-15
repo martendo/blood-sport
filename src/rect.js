@@ -8,10 +8,10 @@ class Rect {
       this._height = x._height;
     } else {
       // Passed dimensions
-      this._x = x;
-      this._y = y;
-      this._width = width;
-      this._height = height;
+      this._x = x || 0;
+      this._y = y || 0;
+      this._width = width || 0;
+      this._height = height || 0;
     }
   }
   

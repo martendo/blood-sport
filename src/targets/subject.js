@@ -1,6 +1,6 @@
 class Subject extends Target {
   constructor(game, pos) {
-    super(game, new Rect(0, 0, 16, 32), pos);
+    super(game);
     
     this.image = this.game.IMAGES["targets/subject"];
     this.setRect(new Rect(
@@ -9,5 +9,8 @@ class Subject extends Target {
       this.image.width,
       this.image.height,
     ));
+    this.hitbox = new Rect(0, 0, 16, 32);
+    
+    this.pos = pos;
   }
 }
