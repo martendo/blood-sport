@@ -21,4 +21,9 @@ class SpriteGroup {
       yield sprite;
     }
   }
+  draw(ctx) {
+    for (const sprite of this.sprites) {
+      sprite.draw(ctx);
+    }
+  }
 }
