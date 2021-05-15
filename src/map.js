@@ -17,6 +17,8 @@ class GameMap {
     
     this.backgroundColour = Colour.PLACEHOLDER;
     
+    this.camera = new Camera(this.game);
+    
     this.blocks = new SpriteGroup();
     this.targets = new SpriteGroup();
     this.blockMap = {};
@@ -151,11 +153,12 @@ class GameMap {
     for (const target of this.targets) {
       target.update();
     }
+    this.camera.update(this.game.player.rect);
   }
   
   draw(ctx) {
     ctx.fillStyle = this.backgroundColour;
-    ctx.fillRect(0, 0, this.width * this.game.TILE_SIZE, this.height * this.game.TILE_SIZE);
+    ctx.fillRect(-this.camera.pos.x, -this.camera.pos.y, this.width * this.game.TILE_SIZE, this.height * this.game.TILE_SIZE);
     this.blocks.draw(ctx);
   }
   
