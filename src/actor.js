@@ -1,13 +1,10 @@
 class Actor extends Sprite {
   constructor(game) {
-    super();
-    
-    this.game = game;
+    super(game);
     
     this.enabled = true;
     this.pos = new Vector2();
     this.vel = new Vector2();
-    this.direction = this.game.DIR_LEFT;
     
     this.hitbox = new Rect();
     
@@ -135,18 +132,5 @@ class Actor extends Sprite {
   
   hitActor(actor) {
     return;
-  }
-  
-  draw(ctx) {
-    if (this.direction === this.game.DIR_LEFT) {
-      // Images are right-facing, flip them horizontally
-      ctx.scale(-1, 1);
-      this.rect.left = this.rect.right * -1;
-      super.draw(ctx);
-      this.rect.left = Math.floor(this.pos.x);
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-    } else {
-      super.draw(ctx);
-    }
   }
 }

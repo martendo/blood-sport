@@ -1,10 +1,9 @@
 class Block extends Sprite {
   constructor(game, map, x, y, tileId, flip) {
-    super();
+    super(game);
     
     this.SOLIDS_START = 1;
     
-    this.game = game;
     this.map = map;
     
     this.tileId = tileId;
