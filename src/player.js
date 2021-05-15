@@ -18,8 +18,8 @@ class Player extends Actor {
     
     this.image = this.game.IMAGES["goddard"];
     this.setRect(new Rect(
-      this.pos.x,
-      this.pos.y,
+      0,
+      0,
       this.image.width,
       this.image.height,
     ));
@@ -71,12 +71,24 @@ class Player extends Actor {
     } else if (this.vel.x < 0) {
       this.direction = this.game.DIR_LEFT;
     }
+    
+    if (this.weapon != null) {
+      this.weapon.update();
+    }
   }
   
   attack() {
-    console.log("attack()");
+    if (this.weapon != null) {
+      this.weapon.die();
+      clearTimeout(this.weapon.timeout);
+    }
+    this.weapon = new Weapon(this.game, this);
     this.isAttacking = true;
-    setTimeout(() => this.isAttacking = false, this.ATTACK_TIME);
+    this.weapon.timeout = setTimeout(() => {
+      this.weapon.die();
+      this.weapon = null;
+      this.isAttacking = false;
+    }, this.ATTACK_TIME);
   }
   
   hurt(damage = 1) {
@@ -97,6 +109,7 @@ class Player extends Actor {
     }
     
     this.health = this.START_HEALTH;
+    this.weapon = null;
     this.isAttacking = false;
   }
 }

@@ -6,6 +6,8 @@ class Target extends Actor {
       } else {
         actor.hurt();
       }
+    } else if (actor instanceof Weapon) {
+      this.kill();
     }
   }
 }

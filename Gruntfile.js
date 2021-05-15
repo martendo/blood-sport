@@ -56,6 +56,7 @@ module.exports = function(grunt) {
       "src/target.js",
       "src/targets/subject.js",
       "src/target-types.js",
+      "src/weapon.js",
       "src/block.js",
       "src/map.js",
       "src/input-handler.js",

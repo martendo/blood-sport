@@ -33,6 +33,12 @@ class Rect {
   set right(value) {
     this._x = value - this._width;
   }
+  get centrex() {
+    return this._x + (this._width / 2);
+  }
+  set centrex(value) {
+    this._x = value - (this._width / 2);
+  }
   
   get y() {
     return this._y;
@@ -51,6 +57,12 @@ class Rect {
   }
   set bottom(value) {
     this._y = value - this._height;
+  }
+  get centrey() {
+    return this._y + (this._height / 2);
+  }
+  set centrey(value) {
+    this._y = value - (this._height / 2);
   }
   
   get width() {

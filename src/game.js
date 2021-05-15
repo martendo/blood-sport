@@ -22,6 +22,7 @@ class Game {
     this.IMAGE_SRCS = {
       "{{ BASE64:img/goddard.png }}": "goddard",
       "{{ BASE64:img/targets/subject.png }}": "targets/subject",
+      "{{ BASE64:img/weapon.png }}": "weapon",
     };
     
     this.TILE_SIZE = 8;
