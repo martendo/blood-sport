@@ -2,8 +2,6 @@ class Camera {
   constructor(game) {
     this.game = game;
     
-    this.X_OFFSET = this.game.canvas.width / 3;
-    this.Y_OFFSET = this.game.canvas.height / 2;
     this.pos = new Vector2(0, 0);
   }
   
@@ -12,7 +10,7 @@ class Camera {
     if (mapWidthPx <= this.game.canvas.width) {
       this.pos.x = -((this.game.canvas.width / 2) - (mapWidthPx / 2));
     } else {
-      const x = followRect.centrex - this.X_OFFSET;
+      const x = followRect.centrex - (this.game.canvas.width / 3);
       if (x < 0) {
         this.pos.x = 0;
       } else if (x + this.game.canvas.width >= mapWidthPx) {
@@ -26,7 +24,7 @@ class Camera {
     if (mapHeightPx <= this.game.canvas.height) {
       this.pos.y = -((this.game.canvas.height / 2) - (mapHeightPx / 2));
     } else {
-      const y = followRect.centrey - this.Y_OFFSET;
+      const y = followRect.centrey - (this.game.canvas.height / 2);
       if (y < 0) {
         this.pos.y = 0;
       } else if (y + this.game.canvas.height >= mapHeightPx) {
