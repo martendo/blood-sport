@@ -35,7 +35,7 @@ class Player extends Actor {
       this.image.width,
       this.image.height,
     ));
-    this.hitbox = new Rect(0, 0, 16, 32);
+    this.hitbox = new Rect(3, 2, 10, 30);
     
     this.reset(undefined, this.game.DIR_RIGHT);
   }
