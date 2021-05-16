@@ -29,5 +29,9 @@ class Sprite {
     for (const group of this.groups) {
       group.remove(this);
     }
+    // Stop any existing Animation
+    if (this.hasOwnProperty("animation")) {
+      this.animation.stop();
+    }
   }
 }
