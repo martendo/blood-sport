@@ -403,6 +403,24 @@
                  "width":16,
                  "x":792,
                  "y":120
+                }, 
+                {
+                 "height":0,
+                 "id":35,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"flip",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"startpoint",
+                 "visible":true,
+                 "width":0,
+                 "x":16,
+                 "y":184
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -411,7 +429,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":35,
+ "nextobjectid":36,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2021.03.23",

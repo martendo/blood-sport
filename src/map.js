@@ -23,6 +23,9 @@ class GameMap {
     this.targets = new SpriteGroup();
     this.blockMap = {};
     
+    this.startpoint = new Vector2();
+    this.startDirection = this.game.DIR_RIGHT;
+    
     this.isReady = false;
   }
   
@@ -55,7 +58,17 @@ class GameMap {
     this.objects = this.getLayer("objectgroup")["objects"];
     this.targetData = [];
     for (const object of this.objects) {
-      if (object.hasOwnProperty("gid")) {
+      if (object["type"] === "startpoint") {
+        this.startpoint = new Vector2(object["x"], object["y"]);
+        for (const property of object["properties"]) {
+          if (property["name"] === "flip") {
+            this.startDirection = property["value"]
+              ? this.game.DIR_LEFT
+              : this.game.DIR_RIGHT;
+            break;
+          }
+        }
+      } else if (object.hasOwnProperty("gid")) {
         this.targetData.push(object);
       }
     }
@@ -165,6 +178,7 @@ class GameMap {
   async reset() {
     await this.createBlocks();
     await this.createTargets();
+    this.game.player.reset(this.startpoint, this.startDirection)
     this.isReady = true;
   }
 }
