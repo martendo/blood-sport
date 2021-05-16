@@ -12,7 +12,7 @@ class Player extends Actor {
     
     this.JUMP_VEL = 5;
     
-    this.ATTACK_TIME = 500;
+    this.ATTACK_TIME = 105;
     
     this.START_HEALTH = 100;
     
