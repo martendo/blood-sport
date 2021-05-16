@@ -31,7 +31,7 @@ class SubjectA extends Target {
   update() {
     super.update();
     
-    if (this.blockcollided.x) {
+    if (this.blockcollided.x || this.isAtEdge()) {
       this.turnAround();
     }
   }

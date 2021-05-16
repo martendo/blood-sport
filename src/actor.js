@@ -114,15 +114,34 @@ class Actor extends Sprite {
     const right = Math.floor((this.rect.x + this.hitbox.right - 1) / this.game.TILE_SIZE);
     const under = Math.floor((this.rect.y + this.hitbox.bottom + this.game.COLLISION_OFFSET) / this.game.TILE_SIZE);
     
-    // Check every block underneath the actor, from its left to right sides
+    // Check every Block underneath the Actor, from its left to right sides
     for (let x = left; x <= right; x++) {
       const block = this.game.map.getBlock(x, under);
-      // If any block is solid, the actor is on ground
+      // If any Block is solid, the Actor is on ground
       if (block.isSolid) {
         return true;
       }
     }
-    // No solid block under the actor
+    // No solid block under the Actor
+    return false;
+  }
+  isAtEdge() {
+    const left = Math.floor((this.rect.x + this.hitbox.left - 1) / this.game.TILE_SIZE);
+    const right = Math.floor((this.rect.x + this.hitbox.right) / this.game.TILE_SIZE);
+    const under = Math.floor((this.rect.y + this.hitbox.bottom + this.game.COLLISION_OFFSET) / this.game.TILE_SIZE);
+    
+    let block;
+    
+    // Check left side of the Actor
+    if (!this.game.map.getBlock(left, under).isSolid) {
+      // Block is not solid, at the edge
+      return true;
+    }
+    // Check right side
+    if (!this.game.map.getBlock(right, under).isSolid) {
+      return true;
+    }
+    
     return false;
   }
   
