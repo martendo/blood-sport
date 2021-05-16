@@ -14,7 +14,7 @@ class TitleScreen {
         width: this.BUTTON_WIDTH,
         height: this.BUTTON_HEIGHT,
       },
-      "Play!",
+      "Play",
       () => this.startGame(),
     );
   }
@@ -44,13 +44,19 @@ class TitleScreen {
       textAlign: "center",
       textBaseline: "middle",
     });
+    this.game.drawText({
+      ctx: ctx,
+      text: "\"They gleaned for sport—for the joy of it—…because they can\" (Shusterman 263)",
+      x: this.game.displayCanvas.width / 2,
+      y: this.game.displayCanvas.height / 3 + 75,
+      font: "18px sans-serif",
+    });
     
     this.game.drawText({
       ctx: ctx,
       text: "Copyright (C) 2021 Martin Baldwin",
       x: 0 + this.PADDING,
       y: this.game.displayCanvas.height - 25 - this.PADDING,
-      font: "18px sans-serif",
       textAlign: "start",
       textBaseline: "bottom",
     });
