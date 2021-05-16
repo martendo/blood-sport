@@ -66,12 +66,12 @@ class Game {
   async loadSpritesheets() {
     this.SPRITESHEETS = {};
     
-    await this.loadSpritesheet("goddard", 16, 32);
-    await this.loadSpritesheet("targets/subject", 16, 32);
-    await this.loadSpritesheet("weapon", 32, 8);
+    await this.loadSpritesheet("goddard", "{{ BASE64:img/goddard.png }}", 16, 32);
+    await this.loadSpritesheet("targets/subject", "{{ BASE64:img/targets/subject.png }}", 16, 32);
+    await this.loadSpritesheet("weapon", "{{ BASE64:img/weapon.png }}", 32, 8);
   }
-  async loadSpritesheet(name, width, height) {
-    const spritesheet = await this.loadImage(`img/${name}.png`);
+  async loadSpritesheet(name, src, width, height) {
+    const spritesheet = await this.loadImage(src);
     
     const frames = [];
     for (let y = 0; y < Math.floor(spritesheet.height / height); y++) {
