@@ -8,6 +8,10 @@ class Actor extends Sprite {
     this.vel = new Vector2();
     
     this.hitbox = new Rect();
+    this.blockcollided = {
+      x: false,
+      y: false,
+    };
     
     this.game.actors.add(this);
   }
@@ -22,6 +26,8 @@ class Actor extends Sprite {
     this.pos.x += this.vel.x;
     this.pos.y += this.vel.y;
     
+    this.blockcollided.x = false;
+    this.blockcollided.y = false;
     let block;
     
     this.rect.left = Math.floor(this.pos.x);
@@ -93,10 +99,12 @@ class Actor extends Sprite {
   }
   
   collidedX() {
+    this.blockcollided.x = true;
     this.vel.x = 0;
     this.rect.left = Math.floor(this.pos.x);
   }
   collidedY() {
+    this.blockcollided.y = true;
     this.vel.y = 0;
     this.rect.bottom = Math.floor(this.pos.y);
   }

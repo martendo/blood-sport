@@ -8,7 +8,13 @@ class Target extends Actor {
       }
     } else if (actor instanceof Weapon) {
       this.die();
+    } else {
+      this.hitTarget();
     }
+  }
+  
+  hitTarget() {
+    return;
   }
   
   die() {
