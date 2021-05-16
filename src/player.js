@@ -4,6 +4,8 @@ class Player extends Actor {
     
     // Player constants
     
+    this.SPRITESHEET = this.game.SPRITESHEETS["goddard"];
+    
     this.ACCEL = 0.25;
     this.FRICTION = 0.125;
     this.MAX_VELX = 2;
@@ -16,7 +18,17 @@ class Player extends Actor {
     
     // Player setup
     
-    this.image = this.game.SPRITESHEETS["goddard"][0];
+    this.animations = {
+      idle: new Animation(this, this.game, {
+        images: [0, 1],
+        duration: [100, 100],
+      }),
+      moving: new Animation(this, this.game, {
+        images: [2, 3],
+        duration: [50, 50],
+      }),
+    };
+    this.image = this.animations.idle.currentImage;
     this.setRect(new Rect(
       0,
       0,
@@ -75,6 +87,18 @@ class Player extends Actor {
     if (this.weapon != null) {
       this.weapon.update();
     }
+    
+    // Use the correct animation
+    if (this.vel.x != 0) {
+      this.animations.idle.stop();
+      this.animations.moving.start();
+      // Animation can change at any time, so always set the image
+      this.image = this.animations.moving.currentImage;
+    } else {
+      this.animations.moving.stop();
+      this.animations.idle.start();
+      this.image = this.animations.idle.currentImage;
+    }
   }
   
   attack() {
@@ -111,5 +135,9 @@ class Player extends Actor {
     this.health = this.START_HEALTH;
     this.weapon = null;
     this.isAttacking = false;
+    for (const animation of Object.values(this.animations)) {
+      animation.stop();
+    }
+    this.animations.idle.start();
   }
 }
