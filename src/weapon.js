@@ -18,7 +18,7 @@ class Weapon extends Sprite {
       this.image.width,
       this.image.height,
     );
-    this.hitbox = new Rect(0, 0, 32, 8);
+    this.hitbox = new Rect(0, 1, 30, 6);
     this.direction = parent.direction;
     this.animation.start();
     
