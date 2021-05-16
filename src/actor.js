@@ -3,6 +3,7 @@ class Actor extends Sprite {
     super(game);
     
     this.enabled = true;
+    this.isDead = false;
     this.pos = new Vector2();
     this.vel = new Vector2();
     
@@ -128,6 +129,7 @@ class Actor extends Sprite {
   
   die() {
     this.kill();
+    this.isDead = true;
   }
   
   hitActor(actor) {

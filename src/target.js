@@ -13,6 +13,10 @@ class Target extends Actor {
   
   die() {
     this.kill();
+    if (this.isDead) {
+      return;
+    }
     this.game.player.gleaned++;
+    this.isDead = true;
   }
 }

@@ -124,6 +124,7 @@ class Player extends Actor {
   
   die() {
     console.log("deadish: end");
+    this.isDead = true;
   }
   
   reset(pos = new Vector2(), direction = null) {
