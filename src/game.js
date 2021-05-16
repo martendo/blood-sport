@@ -226,12 +226,18 @@ class Game {
         this.displayCtx.drawImage(this.canvas, 0, 0, this.displayCanvas.width, this.displayCanvas.height);
         this.drawText({
           ctx: this.displayCtx,
-          text: this.player.health,
+          text: `Gleaned: ${this.player.gleaned}`,
           x: this.displayCanvas.width - this.PADDING,
           y: this.PADDING,
           font: "25px sans-serif",
           textAlign: "end",
           textBaseline: "top",
+        });
+        this.drawText({
+          ctx: this.displayCtx,
+          text: this.player.health,
+          x: this.displayCanvas.width - this.PADDING,
+          y: 30 + this.PADDING,
         });
         break;
     }

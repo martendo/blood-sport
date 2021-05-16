@@ -133,6 +133,7 @@ class Player extends Actor {
     }
     
     this.health = this.START_HEALTH;
+    this.gleaned = 0;
     this.weapon = null;
     this.isAttacking = false;
     for (const animation of Object.values(this.animations)) {

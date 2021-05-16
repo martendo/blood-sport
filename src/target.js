@@ -2,12 +2,17 @@ class Target extends Actor {
   hitActor(actor) {
     if (actor instanceof Player) {
       if (actor.isAttacking) {
-        this.kill();
+        this.die();
       } else {
         actor.hurt();
       }
     } else if (actor instanceof Weapon) {
-      this.kill();
+      this.die();
     }
+  }
+  
+  die() {
+    this.kill();
+    this.game.player.gleaned++;
   }
 }
