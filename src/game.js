@@ -19,12 +19,6 @@ class Game {
     
     this.COLLISION_OFFSET = 4;
     
-    this.SPRITESHEET_SRCS = {
-      "{{ BASE64:img/goddard.png }}": "goddard",
-      "{{ BASE64:img/targets/subject.png }}": "targets/subject",
-      "{{ BASE64:img/weapon.png }}": "weapon",
-    };
-    
     this.TILE_SIZE = 8;
     
     // Game setup
@@ -67,7 +61,7 @@ class Game {
     this.SPRITESHEETS = {};
     
     await this.loadSpritesheet("goddard", "{{ BASE64:img/goddard.png }}", 16, 32);
-    await this.loadSpritesheet("targets/subject", "{{ BASE64:img/targets/subject.png }}", 16, 32);
+    await this.loadSpritesheet("targets/subject-a", "{{ BASE64:img/targets/subject-a.png }}", 16, 32);
     await this.loadSpritesheet("weapon", "{{ BASE64:img/weapon.png }}", 32, 8);
   }
   async loadSpritesheet(name, src, width, height) {

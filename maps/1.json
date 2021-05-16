@@ -441,7 +441,7 @@
         }, 
         {
          "firstgid":3,
-         "source":"object-tilesets\/subject.json"
+         "source":"object-tilesets\/subject-a.json"
         }],
  "tilewidth":8,
  "type":"map",
