@@ -117,14 +117,14 @@ class Player extends Actor {
     
     super.update();
     
-    if (this.vel.x > 0) {
-      this.direction = this.game.DIR_RIGHT;
-    } else if (this.vel.x < 0) {
-      this.direction = this.game.DIR_LEFT;
-    } else if (this.vel.y < 0) {
+    if (this.vel.y < 0) {
       this.direction = this.game.DIR_UP;
     } else if (this.vel.y > 0) {
       this.direction = this.game.DIR_DOWN;
+    } else if (this.vel.x < 0) {
+      this.direction = this.game.DIR_LEFT;
+    } else if (this.vel.x > 0) {
+      this.direction = this.game.DIR_RIGHT;
     }
     
     if (this.weapon != null) {
