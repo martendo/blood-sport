@@ -8,7 +8,7 @@ class Player extends Actor {
     
     this.ACCEL = 0.25;
     this.FRICTION = 0.125;
-    this.MAX_VEL = 2;
+    this.MAX_VEL = 1.5;
     
     this.ATTACK_TIME = 105;
     
