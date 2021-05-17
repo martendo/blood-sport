@@ -11,8 +11,10 @@ class Game {
     this.MAX_STEPS = this.FPS * 4;
     this.DISPLAY_SCALE = 4;
     
-    this.DIR_LEFT = -1;
-    this.DIR_RIGHT = +1;
+    this.DIR_UP = 0;
+    this.DIR_DOWN = 1;
+    this.DIR_LEFT = 2;
+    this.DIR_RIGHT = 3;
     
     this.COLLISION_OFFSET = 4;
     

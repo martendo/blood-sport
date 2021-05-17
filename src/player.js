@@ -17,23 +17,47 @@ class Player extends Actor {
     // Player setup
     
     this.animations = {
-      idle: new Animation(this, this.game, {
+      idleUp: new Animation(this, this.game, {
         images: [0, 1],
         duration: [100, 100],
       }),
-      moving: new Animation(this, this.game, {
+      idleDown: new Animation(this, this.game, {
         images: [2, 3],
+        duration: [100, 100],
+      }),
+      idleLeft: new Animation(this, this.game, {
+        images: [4, 5],
+        duration: [100, 100],
+      }),
+      idleRight: new Animation(this, this.game, {
+        images: [6, 7],
+        duration: [100, 100],
+      }),
+      movingUp: new Animation(this, this.game, {
+        images: [8, 9],
+        duration: [50, 50],
+      }),
+      movingDown: new Animation(this, this.game, {
+        images: [10, 11],
+        duration: [50, 50],
+      }),
+      movingLeft: new Animation(this, this.game, {
+        images: [12, 13],
+        duration: [50, 50],
+      }),
+      movingRight: new Animation(this, this.game, {
+        images: [14, 15],
         duration: [50, 50],
       }),
     };
-    this.image = this.animations.idle.currentImage;
+    this.image = this.animations.idleRight.currentImage;
     this.setRect(new Rect(
       0,
       0,
       this.image.width,
       this.image.height,
     ));
-    this.hitbox = new Rect(3, 2, 10, 30);
+    this.hitbox = new Rect(3, 16, 10, 16);
     
     this.reset(undefined, this.game.DIR_RIGHT);
   }
@@ -97,6 +121,10 @@ class Player extends Actor {
       this.direction = this.game.DIR_RIGHT;
     } else if (this.vel.x < 0) {
       this.direction = this.game.DIR_LEFT;
+    } else if (this.vel.y < 0) {
+      this.direction = this.game.DIR_UP;
+    } else if (this.vel.y > 0) {
+      this.direction = this.game.DIR_DOWN;
     }
     
     if (this.weapon != null) {
@@ -104,16 +132,37 @@ class Player extends Actor {
     }
     
     // Use the correct animation
-    if (this.vel.x != 0 || this.vel.y != 0) {
-      this.animations.idle.stop();
-      this.animations.moving.start();
-      // Animation can change at any time, so always set the image
-      this.image = this.animations.moving.currentImage;
-    } else {
-      this.animations.moving.stop();
-      this.animations.idle.start();
-      this.image = this.animations.idle.currentImage;
+    let animation;
+    if (this.vel.y < 0) {
+      animation = this.animations.movingUp;
+    } else if (this.vel.y > 0) {
+      animation = this.animations.movingDown;
+    } else if (this.vel.x < 0) {
+      animation = this.animations.movingLeft;
+    } else if (this.vel.x > 0) {
+      animation = this.animations.movingRight;
+    } else if (this.direction === this.game.DIR_UP) {
+      animation = this.animations.idleUp;
+    } else if (this.direction === this.game.DIR_DOWN) {
+      animation = this.animations.idleDown;
+    } else if (this.direction === this.game.DIR_LEFT) {
+      animation = this.animations.idleLeft;
+    } else if (this.direction === this.game.DIR_RIGHT) {
+      animation = this.animations.idleRight;
     }
+    this.switchAnimation(animation);
+    // Animation may change at any time - always set the image
+    this.image = animation.currentImage;
+  }
+  
+  switchAnimation(newAnimation) {
+    for (const animation of Object.values(this.animations)) {
+      if (animation === newAnimation) {
+        continue;
+      }
+      animation.stop();
+    }
+    newAnimation.start();
   }
   
   attack() {
@@ -155,6 +204,7 @@ class Player extends Actor {
     for (const animation of Object.values(this.animations)) {
       animation.stop();
     }
-    this.animations.idle.start();
+    this.animations.idleRight.start();
+    this.image = this.animations.idleRight.currentImage;
   }
 }
