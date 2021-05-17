@@ -11,9 +11,6 @@ class Game {
     this.MAX_STEPS = this.FPS * 4;
     this.DISPLAY_SCALE = 4;
     
-    this.GRAVITY = 0.25;
-    this.MAX_VELY = 8;
-    
     this.DIR_LEFT = -1;
     this.DIR_RIGHT = +1;
     
@@ -187,16 +184,6 @@ class Game {
           break;
         }
         
-        for (const actor of this.actors) {
-          // Apply gravity to all actors
-          if (!actor.enabled) {
-            continue;
-          }
-          actor.vel.y += this.GRAVITY;
-          if (actor.vel.y > this.MAX_VELY) {
-            actor.vel.y = this.MAX_VELY;
-          }
-        }
         this.map.update();
         this.player.update();
         break;

@@ -8,9 +8,7 @@ class Player extends Actor {
     
     this.ACCEL = 0.25;
     this.FRICTION = 0.125;
-    this.MAX_VELX = 2;
-    
-    this.JUMP_VEL = 5;
+    this.MAX_VEL = 2;
     
     this.ATTACK_TIME = 105;
     
@@ -45,16 +43,17 @@ class Player extends Actor {
       this.attack();
     }
     
-    if (this.game.inputHandler.newKeys.has("ArrowUp") && this.isOnGround()) {
-      // Jump!
-      this.vel.y = - this.JUMP_VEL;
+    if (this.game.inputHandler.keys.has("ArrowLeft")) {
+      this.vel.x -= this.ACCEL;
     }
-    
     if (this.game.inputHandler.keys.has("ArrowRight")) {
       this.vel.x += this.ACCEL;
     }
-    if (this.game.inputHandler.keys.has("ArrowLeft")) {
-      this.vel.x -= this.ACCEL;
+    if (this.game.inputHandler.keys.has("ArrowUp")) {
+      this.vel.y -= this.ACCEL;
+    }
+    if (this.game.inputHandler.keys.has("ArrowDown")) {
+      this.vel.y += this.ACCEL;
     }
     
     if (this.vel.x > 0) {
@@ -69,11 +68,27 @@ class Player extends Actor {
         this.vel.x = 0;
       }
     }
+    if (this.vel.y > 0) {
+      this.vel.y -= this.FRICTION;
+      if (this.vel.y < 0) {
+        this.vel.y = 0;
+      }
+    } else if (this.vel.y < 0) {
+      this.vel.y += this.FRICTION;
+      if (this.vel.y > 0) {
+        this.vel.y = 0;
+      }
+    }
     
-    if (this.vel.x > this.MAX_VELX) {
-      this.vel.x = this.MAX_VELX;
-    } else if (this.vel.x < -this.MAX_VELX) {
-      this.vel.x = -this.MAX_VELX;
+    if (this.vel.x > this.MAX_VEL) {
+      this.vel.x = this.MAX_VEL;
+    } else if (this.vel.x < -this.MAX_VEL) {
+      this.vel.x = -this.MAX_VEL;
+    }
+    if (this.vel.y > this.MAX_VEL) {
+      this.vel.y = this.MAX_VEL;
+    } else if (this.vel.y < -this.MAX_VEL) {
+      this.vel.y = -this.MAX_VEL;
     }
     
     super.update();
@@ -89,7 +104,7 @@ class Player extends Actor {
     }
     
     // Use the correct animation
-    if (this.vel.x != 0) {
+    if (this.vel.x != 0 || this.vel.y != 0) {
       this.animations.idle.stop();
       this.animations.moving.start();
       // Animation can change at any time, so always set the image

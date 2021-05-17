@@ -62,6 +62,16 @@ class Actor extends Sprite {
       this.collidedY();
     }
     
+    // End of map
+    const mapHeightPx = this.game.map.height * this.game.TILE_SIZE;
+    if (this.rect.top + this.hitbox.top < 0) {
+      this.pos.y = 0 - this.hitbox.top + this.rect.height;
+      this.collidedY();
+    } else if (this.rect.top + this.hitbox.bottom > mapHeightPx) {
+      this.pos.y = mapHeightPx - this.rect.height + this.hitbox.bottom;
+      this.collidedY();
+    }
+    
     // Actor-Actor collision
     for (const actor of this.game.actors) {
       if (this.actorcollide(this, actor)) {
@@ -107,42 +117,6 @@ class Actor extends Sprite {
     this.blockcollided.y = true;
     this.vel.y = 0;
     this.rect.bottom = Math.floor(this.pos.y);
-  }
-  
-  isOnGround() {
-    const left = Math.floor((this.rect.x + this.hitbox.left) / this.game.TILE_SIZE);
-    const right = Math.floor((this.rect.x + this.hitbox.right - 1) / this.game.TILE_SIZE);
-    const under = Math.floor((this.rect.y + this.hitbox.bottom + this.game.COLLISION_OFFSET) / this.game.TILE_SIZE);
-    
-    // Check every Block underneath the Actor, from its left to right sides
-    for (let x = left; x <= right; x++) {
-      const block = this.game.map.getBlock(x, under);
-      // If any Block is solid, the Actor is on ground
-      if (block.isSolid) {
-        return true;
-      }
-    }
-    // No solid block under the Actor
-    return false;
-  }
-  isAtEdge() {
-    const left = Math.floor((this.rect.x + this.hitbox.left - 1) / this.game.TILE_SIZE);
-    const right = Math.floor((this.rect.x + this.hitbox.right) / this.game.TILE_SIZE);
-    const under = Math.floor((this.rect.y + this.hitbox.bottom + this.game.COLLISION_OFFSET) / this.game.TILE_SIZE);
-    
-    let block;
-    
-    // Check left side of the Actor
-    if (!this.game.map.getBlock(left, under).isSolid) {
-      // Block is not solid, at the edge
-      return true;
-    }
-    // Check right side
-    if (!this.game.map.getBlock(right, under).isSolid) {
-      return true;
-    }
-    
-    return false;
   }
   
   actorcollide(actor1, actor2) {

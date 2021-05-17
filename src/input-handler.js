@@ -37,6 +37,11 @@ class InputHandler {
       case "W":
         key = "ArrowUp";
         break;
+      case "DOWN":
+      case "ARROWDOWN":
+      case "S":
+        key = "ArrowDown";
+        break;
       case "SPACEBAR":
       case " ":
         key = "Spacebar";

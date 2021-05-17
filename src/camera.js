@@ -24,7 +24,7 @@ class Camera {
     if (mapHeightPx <= this.game.canvas.height) {
       this.pos.y = -((this.game.canvas.height / 2) - (mapHeightPx / 2));
     } else {
-      const y = followRect.centrey - (this.game.canvas.height / 3);
+      const y = followRect.centrey - (this.game.canvas.height / 2);
       if (y < 0) {
         this.pos.y = 0;
       } else if (y + this.game.canvas.height >= mapHeightPx) {
