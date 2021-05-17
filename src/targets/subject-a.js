@@ -17,15 +17,32 @@ class SubjectA extends Target {
       this.image.width,
       this.image.height,
     ));
-    this.hitbox = new Rect(3, 1, 10, 31);
+    this.hitbox = new Rect(3, 16, 10, 16);
     this.animation.start();
     
-    this.vel.x = this.SPEED * this.direction;
+    this.direction = Math.floor(Math.random() * 4);
+    this.updateSpeed();
+  }
+  
+  updateSpeed() {
+    if (this.direction === this.game.DIR_UP) {
+      this.vel.x = 0;
+      this.vel.y = -this.SPEED;
+    } else if (this.direction === this.game.DIR_DOWN) {
+      this.vel.x = 0;
+      this.vel.y = this.SPEED;
+    } else if (this.direction === this.game.DIR_LEFT) {
+      this.vel.x = -this.SPEED;
+      this.vel.y = 0;
+    } else if (this.direction === this.game.DIR_RIGHT) {
+      this.vel.x = this.SPEED;
+      this.vel.y = 0;
+    }
   }
   
   turnAround() {
-    this.direction = -this.direction;
-    this.vel.x = this.SPEED * this.direction;
+    this.direction ^= 1;
+    this.updateSpeed();
   }
   
   update() {
