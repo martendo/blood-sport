@@ -61,7 +61,7 @@ class Game {
     
     await this.loadSpritesheet("goddard", "{{ BASE64:img/goddard.png }}", 16, 32);
     await this.loadSpritesheet("targets/subject-a", "{{ BASE64:img/targets/subject-a.png }}", 16, 32);
-    await this.loadSpritesheet("weapon", "{{ BASE64:img/weapon.png }}", 32, 8);
+    await this.loadSpritesheet("weapon", "{{ BASE64:img/weapon.png }}", 32, 32);
   }
   async loadSpritesheet(name, src, width, height) {
     const spritesheet = await this.loadImage(src);

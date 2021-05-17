@@ -155,16 +155,6 @@ class Player extends Actor {
     this.image = animation.currentImage;
   }
   
-  switchAnimation(newAnimation) {
-    for (const animation of Object.values(this.animations)) {
-      if (animation === newAnimation) {
-        continue;
-      }
-      animation.stop();
-    }
-    newAnimation.start();
-  }
-  
   attack() {
     if (this.weapon != null) {
       this.weapon.die();

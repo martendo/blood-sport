@@ -14,6 +14,16 @@ class Sprite {
     ctx.drawImage(this.image, rect.x, rect.y, rect.width, rect.height);
   }
   
+  switchAnimation(newAnimation) {
+    for (const animation of Object.values(this.animations)) {
+      if (animation === newAnimation) {
+        continue;
+      }
+      animation.stop();
+    }
+    newAnimation.start();
+  }
+  
   kill() {
     // Remove this Sprite from all SpriteGroups
     for (const group of this.groups) {
