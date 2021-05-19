@@ -10,7 +10,7 @@ class Player extends Actor {
     this.FRICTION = 0.125;
     this.MAX_VEL = 1.5;
     
-    this.ATTACK_TIME = 105;
+    this.ATTACK_TIME = 240;
     
     this.START_HEALTH = 100;
     
