@@ -2,7 +2,7 @@ class Block extends Sprite {
   constructor(game, map, x, y, tileId, flip) {
     super(game);
     
-    this.SOLIDS_START = 1;
+    this.SOLIDS_START = 24;
     
     this.map = map;
     
@@ -10,7 +10,7 @@ class Block extends Sprite {
     this.isSolid = this.tileId >= this.SOLIDS_START;
     
     this.image = this.game.TILESET[this.tileId];
-    this.flipImage(flip);
+    this.flip = flip; // Unused
     
     this.x = x;
     this.y = y;
@@ -20,10 +20,5 @@ class Block extends Sprite {
       this.game.TILE_SIZE,
       this.game.TILE_SIZE,
     );
-  }
-  
-  flipImage(flip) {
-    this.flip = flip;
-    // TODO: Actually flip the image
   }
 }
