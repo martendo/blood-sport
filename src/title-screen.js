@@ -29,17 +29,13 @@ class TitleScreen {
     this.game.map.load(1);
   }
   
-  update() {
-    this.button.rect.x = (this.game.displayCanvas.width / 2) - (this.BUTTON_WIDTH / 2);
-    this.button.rect.y = (this.game.displayCanvas.height / 2) - (this.BUTTON_HEIGHT / 2);
-  }
-  
   draw(ctx) {
+    ctx.fillStyle = "#000000";
     this.game.drawText({
       ctx: ctx,
       text: this.game.TITLE,
-      x: this.game.displayCanvas.width / 2,
-      y: this.game.displayCanvas.height / 3,
+      x: ctx.canvas.width / 2,
+      y: ctx.canvas.height / 3,
       font: "75px sans-serif",
       textAlign: "center",
       textBaseline: "middle",
@@ -47,8 +43,8 @@ class TitleScreen {
     this.game.drawText({
       ctx: ctx,
       text: "\"They gleaned for sport—for the joy of it—…because they can\" (Shusterman 263)",
-      x: this.game.displayCanvas.width / 2,
-      y: this.game.displayCanvas.height / 3 + 75,
+      x: ctx.canvas.width / 2,
+      y: ctx.canvas.height / 3 + 75,
       font: "18px sans-serif",
     });
     
@@ -56,7 +52,7 @@ class TitleScreen {
       ctx: ctx,
       text: "Copyright (C) 2021 Martin Baldwin",
       x: 0 + this.PADDING,
-      y: this.game.displayCanvas.height - 25 - this.PADDING,
+      y: ctx.canvas.height - 25 - this.PADDING,
       textAlign: "start",
       textBaseline: "bottom",
     });
@@ -64,17 +60,19 @@ class TitleScreen {
       ctx: ctx,
       text: "Licensed under the GNU General Public License v3.0",
       x: 0 + this.PADDING,
-      y: this.game.displayCanvas.height - this.PADDING,
+      y: ctx.canvas.height - this.PADDING,
     });
     
     this.game.drawText({
       ctx: ctx,
       text: "Last modified {{ DATE }}",
-      x: this.game.displayCanvas.width - this.PADDING,
-      y: this.game.displayCanvas.height - this.PADDING,
+      x: ctx.canvas.width - this.PADDING,
+      y: ctx.canvas.height - this.PADDING,
       textAlign: "end",
     });
     
+    this.button.rect.x = (ctx.canvas.width / 2) - (this.BUTTON_WIDTH / 2);
+    this.button.rect.y = (ctx.canvas.height / 2) - (this.BUTTON_HEIGHT / 2);
     this.button.draw(ctx);
   }
 }

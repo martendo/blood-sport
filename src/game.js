@@ -178,9 +178,6 @@ class Game {
   update(delta) {
     this.inputHandler.update();
     switch (this.state) {
-      case GameState.TITLE_SCREEN:
-        this.titleScreen.update();
-        break;
       case GameState.IN_GAME:
         if (!this.map.isReady) {
           break;
