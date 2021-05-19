@@ -35,6 +35,7 @@ class Animation {
       this.nextTimeout();
     }
     this.playing = true;
+    this.sprite.image = this.currentImage;
   }
   stop() {
     if (this.timeout != null) {
