@@ -25,6 +25,7 @@ class Target extends Actor {
       this.game.canvas.height,
     )) && Math.floor(Math.random() * this.ESCAPE_CHANCE) == 0) {
       this.kill();
+      this.game.escapedTargets++;
     }
   }
   

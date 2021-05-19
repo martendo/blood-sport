@@ -186,7 +186,8 @@ class GameMap {
   async reset() {
     await this.createBlocks();
     await this.createTargets();
-    this.game.player.reset(this.startpoint, this.startDirection)
+    this.game.player.reset(this.startpoint, this.startDirection);
+    this.game.escapedTargets = 0;
     this.isReady = true;
   }
 }

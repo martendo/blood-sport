@@ -26,4 +26,7 @@ class SpriteGroup {
       sprite.draw(ctx);
     }
   }
+  get count() {
+    return this.sprites.size;
+  }
 }

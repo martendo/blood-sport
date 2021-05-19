@@ -85,6 +85,7 @@ class Game {
     
     this.buttons = new Set();
     this.titleScreen = new TitleScreen(this);
+    this.endScreen = new EndScreen(this);
     
     this.map = new GameMap(this);
     this.actors = new SpriteGroup();
@@ -185,6 +186,11 @@ class Game {
         
         this.map.update();
         this.player.update();
+        
+        if (this.map.targets.count < 1) {
+          this.endScreen.show();
+        }
+        
         break;
     }
   }
@@ -195,6 +201,9 @@ class Game {
     switch (this.state) {
       case GameState.TITLE_SCREEN:
         this.titleScreen.draw(this.displayCtx);
+        break;
+      case GameState.END_SCREEN:
+        this.endScreen.draw(this.displayCtx);
         break;
       case GameState.IN_GAME:
         if (!this.map.isReady) {

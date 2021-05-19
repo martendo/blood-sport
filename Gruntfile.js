@@ -64,6 +64,7 @@ module.exports = function(grunt) {
       "src/input-handler.js",
       "src/button.js",
       "src/title-screen.js",
+      "src/end-screen.js",
       "src/game.js",
       "src/main.js",
     ],
