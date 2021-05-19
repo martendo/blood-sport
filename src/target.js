@@ -1,4 +1,10 @@
 class Target extends Actor {
+  constructor(game) {
+    super(game);
+    
+    this.ESCAPE_CHANCE = 60 * this.game.FPS;
+  }
+  
   hitActor(actor) {
     if (actor instanceof Player) {
       if (actor.isAttacking) {
@@ -10,6 +16,20 @@ class Target extends Actor {
       this.die();
     } else {
       this.hitTarget();
+    }
+  }
+  
+  update() {
+    super.update();
+    
+    // Slim chance of escaping while off-screen
+    if (!this.rect.colliderect(new Rect(
+      this.game.map.camera.pos.x,
+      this.game.map.camera.pos.y,
+      this.game.canvas.width,
+      this.game.canvas.height,
+    )) && Math.floor(Math.random() * this.ESCAPE_CHANCE) == 0) {
+      this.kill();
     }
   }
   
