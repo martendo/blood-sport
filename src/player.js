@@ -12,8 +12,6 @@ class Player extends Actor {
     
     this.ATTACK_TIME = 240;
     
-    this.START_HEALTH = 100;
-    
     // Player setup
     
     this.animations = {
@@ -169,25 +167,12 @@ class Player extends Actor {
     }, this.ATTACK_TIME);
   }
   
-  hurt(damage = 1) {
-    this.health -= damage;
-    if (this.health < 1) {
-      this.die();
-    }
-  }
-  
-  die() {
-    console.log("deadish: end");
-    this.isDead = true;
-  }
-  
   reset(pos = new Vector2(), direction = null) {
     this.pos = new Vector2(pos);
     if (direction != null) {
       this.direction = direction;
     }
     
-    this.health = this.START_HEALTH;
     this.gleaned = 0;
     this.weapon = null;
     this.isAttacking = false;

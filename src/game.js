@@ -216,12 +216,6 @@ class Game {
           textAlign: "end",
           textBaseline: "top",
         });
-        this.drawText({
-          ctx: this.displayCtx,
-          text: this.player.health,
-          x: this.displayCanvas.width - this.PADDING,
-          y: 30 + this.PADDING,
-        });
         break;
     }
   }
