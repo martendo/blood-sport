@@ -207,12 +207,19 @@ class Game {
         this.map.draw(this.ctx);
         this.actors.draw(this.ctx);
         this.displayCtx.drawImage(this.canvas, 0, 0, this.displayCanvas.width, this.displayCanvas.height);
+        
+        this.displayCtx.fillStyle = "#ffffff";
+        this.displayCtx.fillRect(this.displayCanvas.width, -3, -250, 75);
+        this.displayCtx.strokeStyle = "#000000";
+        this.displayCtx.lineWidth = 3;
+        this.displayCtx.strokeRect(this.displayCanvas.width, -3, -250, 75);
+        this.displayCtx.fillStyle = "#000000";
         this.drawText({
           ctx: this.displayCtx,
           text: `Gleaned: ${this.player.gleaned}`,
           x: this.displayCanvas.width - this.PADDING,
           y: this.PADDING,
-          font: "25px sans-serif",
+          font: "40px sans-serif",
           textAlign: "end",
           textBaseline: "top",
         });
