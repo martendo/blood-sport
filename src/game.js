@@ -209,10 +209,10 @@ class Game {
         this.displayCtx.drawImage(this.canvas, 0, 0, this.displayCanvas.width, this.displayCanvas.height);
         
         this.displayCtx.fillStyle = "#ffffff";
-        this.displayCtx.fillRect(this.displayCanvas.width, -3, -250, 75);
+        this.displayCtx.fillRect(this.displayCanvas.width + 2, -3, -250, 75);
         this.displayCtx.strokeStyle = "#000000";
         this.displayCtx.lineWidth = 3;
-        this.displayCtx.strokeRect(this.displayCanvas.width, -3, -250, 75);
+        this.displayCtx.strokeRect(this.displayCanvas.width + 2, -3, -250, 75);
         this.displayCtx.fillStyle = "#000000";
         this.drawText({
           ctx: this.displayCtx,
