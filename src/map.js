@@ -38,11 +38,15 @@ class GameMap {
     throw `No layer of type "${type}" found in GameMap.data`;
   }
   
-  load(map) {
+  async load(map) {
     this.isReady = false;
-    fetch(`maps/${map}.json`)
-      .then((response) => response.json())
-      .then((data) => this.setup(data));
+    const response = await fetch(`maps/${map}.json`, {
+      headers: {
+        "Cache-Control": "no-cache",
+      },
+    });
+    const data = await response.json();
+    this.setup(data);
   }
   setup(data) {
     this.data = data;
@@ -135,7 +139,11 @@ class GameMap {
     if (this.tilesets.hasOwnProperty(tileset)) {
       return this.tilesets[tileset];
     }
-    const response = await fetch(tileset);
+    const response = await fetch(tileset, {
+      headers: {
+        "Cache-Control": "no-cache",
+      },
+    });
     const data = await response.json();
     this.tilesets[tileset] = data;
     return data;
