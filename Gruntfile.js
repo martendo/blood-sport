@@ -57,6 +57,7 @@ module.exports = function(grunt) {
       "src/target.js",
       "src/targets/subject-a.js",
       "src/targets/subject-b.js",
+      "src/targets/subject-c.js",
       "src/target-types.js",
       "src/weapon.js",
       "src/block.js",
