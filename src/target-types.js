@@ -1,3 +1,4 @@
 const TARGET_TYPES = {
-  "SubjectA": SubjectA,
+  "subject-a": SubjectA,
+  "subject-b": SubjectB,
 };
