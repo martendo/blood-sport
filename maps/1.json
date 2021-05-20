@@ -443,6 +443,12 @@
  "nextlayerid":3,
  "nextobjectid":37,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"quota",
+         "type":"int",
+         "value":25
+        }],
  "renderorder":"right-down",
  "tiledversion":"2021.03.23",
  "tileheight":8,

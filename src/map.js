@@ -15,6 +15,7 @@ class GameMap {
         d: false,
     });
     
+    this.current = null;
     this.backgroundColour = Colour.PLACEHOLDER;
     
     this.camera = new Camera(this.game);
@@ -39,6 +40,8 @@ class GameMap {
   }
   
   async load(map) {
+    this.game.state = GameState.IN_GAME;
+    this.current = map;
     this.isReady = false;
     const response = await fetch(`maps/${map}.json`, {
       headers: {
@@ -74,6 +77,14 @@ class GameMap {
         }
       } else if (object.hasOwnProperty("gid")) {
         this.targetData.push(object);
+      }
+    }
+    
+    // Quota for this map
+    for (const property of this.data["properties"]) {
+      if (property["name"] === "quota") {
+        this.quota = property["value"];
+        break;
       }
     }
     

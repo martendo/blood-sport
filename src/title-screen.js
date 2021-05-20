@@ -24,7 +24,6 @@ class TitleScreen {
     this.button.enabled = true;
   }
   startGame() {
-    this.game.state = GameState.IN_GAME;
     this.button.enabled = false;
     this.game.map.load(1);
   }
