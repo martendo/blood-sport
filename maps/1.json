@@ -442,8 +442,18 @@
  "tileheight":8,
  "tilesets":[
         {
+         "columns":8,
          "firstgid":1,
-         "source":"tiles.json"
+         "image":"..\/img\/tilesets\/1.png",
+         "imageheight":64,
+         "imagewidth":64,
+         "margin":0,
+         "name":"tiles",
+         "spacing":0,
+         "tilecount":64,
+         "tileheight":8,
+         "tilewidth":8,
+         "transparentcolor":"#ff00ff"
         }, 
         {
          "firstgid":65,

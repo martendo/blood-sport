@@ -39,10 +39,16 @@ class Game {
     this.setup();
   }
   
-  async loadTileset() {
-    this.TILESET = [];
+  async loadTilesets() {
+    this.TILESETS = {};
     
-    const img = await this.loadImage("{{ BASE64:img/tiles.png }}");
+    await this.loadTileset(1, "{{ BASE64:img/tilesets/1.png }}");
+  }
+  
+  async loadTileset(name, src) {
+    const img = await this.loadImage(src);
+    
+    const tileset = [];
     const tileWidth = Math.floor(img.width / this.TILE_SIZE);
     const tileHeight = Math.floor(img.height / this.TILE_SIZE);
     for (let y = 0; y < tileHeight; y++) {
@@ -51,9 +57,10 @@ class Game {
         subcanvas.width = this.TILE_SIZE;
         subcanvas.height = this.TILE_SIZE;
         subcanvas.getContext("2d").drawImage(img, x * this.TILE_SIZE, y * this.TILE_SIZE, this.TILE_SIZE, this.TILE_SIZE, 0, 0, subcanvas.width, subcanvas.height);
-        this.TILESET.push(subcanvas);
+        tileset.push(subcanvas);
       }
     }
+    this.TILESETS[name] = tileset;
   }
   
   async loadSpritesheets() {
@@ -83,7 +90,7 @@ class Game {
   
   async setup () {
     await this.loadSpritesheets();
-    await this.loadTileset();
+    await this.loadTilesets();
     
     this.buttons = new Set();
     this.titleScreen = new TitleScreen(this);

@@ -8,6 +8,7 @@ class GameMap {
     this.game = game;
     
     this.tilesets = {};
+    this.current = 1;
     
     this.EMPTY_BLOCK = new Block(this.game, this, 0, 0, 0, {
         h: false,
