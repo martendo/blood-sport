@@ -66,8 +66,14 @@ class TitleScreen {
       ctx: ctx,
       text: "Last modified {{ DATE }}",
       x: ctx.canvas.width - this.PADDING,
-      y: ctx.canvas.height - this.PADDING,
+      y: ctx.canvas.height - 25 - this.PADDING,
       textAlign: "end",
+    });
+    this.game.drawText({
+      ctx: ctx,
+      text: "https://github.com/martendo7/blood-sport",
+      x: ctx.canvas.width - this.PADDING,
+      y: ctx.canvas.height - this.PADDING,
     });
     
     this.button.rect.x = (ctx.canvas.width / 2) - (this.BUTTON_WIDTH / 2);
