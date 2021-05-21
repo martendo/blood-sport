@@ -43,6 +43,7 @@ class Game {
     this.TILESETS = {};
     
     await this.loadTileset(1, "{{ BASE64:img/tilesets/1.png }}");
+    await this.loadTileset(2, "{{ BASE64:img/tilesets/2.png }}");
   }
   
   async loadTileset(name, src) {

@@ -4,6 +4,7 @@ class Block extends Sprite {
     
     this.SOLIDS_STARTS = {
       1: 24,
+      2: 3,
     };
     
     this.map = map;
