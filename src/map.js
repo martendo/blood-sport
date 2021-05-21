@@ -41,9 +41,9 @@ class GameMap {
   }
   
   async load(map) {
+    this.isReady = false;
     this.game.state = GameState.IN_GAME;
     this.current = map;
-    this.isReady = false;
     const response = await fetch(`maps/${map}.json`, {
       headers: {
         "Cache-Control": "no-cache",

@@ -18,28 +18,27 @@ class EndScreen {
       "Continue",
       () => this.continueGame(),
     );
+    this.shown = false;
   }
   
   show() {
+    if (this.shown) {
+      return;
+    }
+    
     setTimeout(() => this.game.state = GameState.END_SCREEN, this.DELAY);
     
-    if (this.game.map.current < this.game.LEVEL_COUNT) {
-      if (Math.abs((this.game.player.gleaned / this.game.map.quota) - 1) > 0.2) {
-        // +/- 20% from quota -> no good!
-        this.willContinue = false;
-        this.button.enabled = true;
-      } else {
-        this.willContinue = true;
-      }
-      this.finished = false;
-    } else {
-      this.willContinue = false;
-      this.finished = true;
-    }
+    // +/- 20% from quota -> no good!
+    this.willContinue = Math.abs((this.game.player.gleaned / this.game.map.quota) - 1) <= 0.2;
+    this.finished = this.willContinue && this.game.map.current >= this.game.LEVEL_COUNT;
+    this.button.enabled = this.willContinue;
+    
+    this.shown = true;
   }
   continueGame() {
     this.button.enabled = false;
     this.game.map.load(this.game.map.current + 1);
+    this.shown = false;
   }
   
   draw(ctx) {
