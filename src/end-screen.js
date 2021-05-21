@@ -32,6 +32,9 @@ class EndScreen {
     this.willContinue = Math.abs((this.game.player.gleaned / this.game.map.quota) - 1) <= 0.2;
     this.finished = this.willContinue && this.game.map.current >= this.game.LEVEL_COUNT;
     this.button.enabled = this.willContinue;
+    if (this.finished) {
+      this.button.enabled = false;
+    }
     
     this.shown = true;
   }
