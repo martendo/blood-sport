@@ -23,12 +23,18 @@ class EndScreen {
   show() {
     setTimeout(() => this.game.state = GameState.END_SCREEN, this.DELAY);
     
-    this.button.enabled = true;
-    if (Math.abs((this.game.player.gleaned / this.game.map.quota) - 1) > 0.2) {
-      // +/- 20% from quota -> no good!
-      this.willContinue = false;
+    if (this.game.map.current < this.game.LEVEL_COUNT) {
+      if (Math.abs((this.game.player.gleaned / this.game.map.quota) - 1) > 0.2) {
+        // +/- 20% from quota -> no good!
+        this.willContinue = false;
+        this.button.enabled = true;
+      } else {
+        this.willContinue = true;
+      }
+      this.finished = false;
     } else {
-      this.willContinue = true;
+      this.willContinue = false;
+      this.finished = true;
     }
   }
   continueGame() {
@@ -61,20 +67,29 @@ class EndScreen {
       y: ctx.canvas.height / 3 + 150,
     });
     
-    if (this.willContinue) {
-      this.button.rect.x = (ctx.canvas.width / 2) - (this.BUTTON_WIDTH / 2);
-      this.button.rect.y = (ctx.canvas.height / 3 * 2) - (this.BUTTON_HEIGHT / 2);
-      this.button.draw(ctx);
-    } else {
+    if (this.finished) {
       this.game.drawText({
         ctx: ctx,
-        text: "You're too far off the quota! That is unacceptable!",
+        text: "All mass gleanings have been completed.",
         x: ctx.canvas.width / 2,
         y: ctx.canvas.height / 3 * 2,
-        font: "50px sans-serif",
-        textAlign: "center",
-        textBaseline: "middle",
       });
+    } else {
+      if (this.willContinue) {
+        this.button.rect.x = (ctx.canvas.width / 2) - (this.BUTTON_WIDTH / 2);
+        this.button.rect.y = (ctx.canvas.height / 3 * 2) - (this.BUTTON_HEIGHT / 2);
+        this.button.draw(ctx);
+      } else {
+        this.game.drawText({
+          ctx: ctx,
+          text: "You're too far off the quota! That is unacceptable!",
+          x: ctx.canvas.width / 2,
+          y: ctx.canvas.height / 3 * 2,
+          font: "50px sans-serif",
+          textAlign: "center",
+          textBaseline: "middle",
+        });
+      }
     }
   }
 }

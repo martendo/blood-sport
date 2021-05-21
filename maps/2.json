@@ -807,7 +807,7 @@
         {
          "name":"quota",
          "type":"int",
-         "value":25
+         "value":29
         }],
  "renderorder":"right-down",
  "tiledversion":"2021.03.23",

@@ -20,6 +20,8 @@ class Game {
     
     this.TILE_SIZE = 8;
     
+    this.LEVEL_COUNT = 2;
+    
     // Game setup
     
     this.running = false;
