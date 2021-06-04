@@ -1,7 +1,7 @@
-# [Blood Sport](https://martendo7.github.io/blood-sport)
+# [Blood Sport](https://martendo.github.io/blood-sport)
 The Scythe video game of the millennium!&reg;&#8482;
 
-Available at https://martendo7.github.io/blood-sport
+Available at https://martendo.github.io/blood-sport
 
 > wow this is an incredible video game i love it very very much
 >

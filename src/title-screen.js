@@ -71,7 +71,7 @@ class TitleScreen {
     });
     this.game.drawText({
       ctx: ctx,
-      text: "https://github.com/martendo7/blood-sport",
+      text: "https://github.com/martendo/blood-sport",
       x: ctx.canvas.width - this.PADDING,
       y: ctx.canvas.height - this.PADDING,
     });
