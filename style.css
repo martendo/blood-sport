@@ -1,0 +1,6 @@
+/*
+ * Blood Sport (https://github.com/martendo7/blood-sport)
+ * Copyright (C) 2021 Martin Baldwin
+ * Licensed under the GNU General Public License v3.0
+ */
+*{margin:0;padding:0}body,html{width:100vw;height:100vh}canvas{position:absolute}canvas#canvas{display:none}
